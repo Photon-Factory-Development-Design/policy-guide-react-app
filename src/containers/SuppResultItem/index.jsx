@@ -16,8 +16,6 @@ const SuppResultItem = ({ data }) => {
     // proxy object
     const proxy = React.useMemo(() => getProxy(data), [data]);
 
-    console.log(data);
-
     return (
         <Box py={2}>
             <Card>

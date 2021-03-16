@@ -154,9 +154,6 @@ const CustomComboBox = ({
     runValidator(value);
   }, [submitted, value]);
 
-  console.log('validationError', validationError);
-  console.log(value, props.name)
-
   return (
     <Autocomplete
       disableListWrap

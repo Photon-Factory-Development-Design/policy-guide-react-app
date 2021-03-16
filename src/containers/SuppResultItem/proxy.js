@@ -28,10 +28,15 @@ export const fields = {
         fn: (data) => data.rate?.month,
         show: false
     },
-    COMPANY_NAME: {
+    COMPANY_FULL_NAME: {
         label: 'Company Name: ',
         show: false,
         fn: (data) => data.company_base?.name_full
+    },
+    COMPANY_NAME: {
+        label: 'Company Name: ',
+        show: false,
+        fn: (data) => data.company_base?.name
     },
     DISCOUNT: {
         label: 'Discount',

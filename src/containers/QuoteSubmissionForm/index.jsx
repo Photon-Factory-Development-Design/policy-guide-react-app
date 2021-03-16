@@ -151,7 +151,6 @@ const QuotesSubmissionForm = ({ onUpdate }) => {
                                 placeholder="Female"
                                 value={gender}
                                 onChange={(e, value) => {
-                                    console.log(value);
                                     setGender(value);
                                 }}
                                 required
