@@ -1,0 +1,18 @@
+<svg id="Vector_Smart_Object" data-name="Vector Smart Object" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="198" height="204" viewBox="0 0 198 204">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_5" data-name="Rectangle 5" width="198" height="204" fill="none"/>
+    </clipPath>
+  </defs>
+  <path id="Path_19" data-name="Path 19" d="M118.042,69.382H80.352L61.507,102,80.352,134.62h37.689L136.886,102Z" fill="#ba8841"/>
+  <g id="Group_10" data-name="Group 10">
+    <g id="Group_9" data-name="Group 9" clip-path="url(#clip-path)">
+      <path id="Path_20" data-name="Path 20" d="M174.368,36.762H136.679L117.834,69.382,136.679,102h37.689l18.845-32.619Z" fill="none" stroke="#ba8841" stroke-miterlimit="10" stroke-width="8.289"/>
+      <path id="Path_21" data-name="Path 21" d="M118.042,4.144H80.352L61.507,36.762,80.352,69.382h37.689l18.845-32.619Z" fill="none" stroke="#ba8841" stroke-miterlimit="10" stroke-width="8.289"/>
+      <path id="Path_22" data-name="Path 22" d="M61.321,36.762H23.632L4.787,69.382,23.632,102H61.321L80.166,69.382Z" fill="none" stroke="#ba8841" stroke-miterlimit="10" stroke-width="8.289"/>
+      <path id="Path_23" data-name="Path 23" d="M61.321,102H23.632L4.787,134.62l18.845,32.619H61.321L80.166,134.62Z" fill="none" stroke="#ba8841" stroke-miterlimit="10" stroke-width="8.289"/>
+      <path id="Path_24" data-name="Path 24" d="M118.042,134.619H80.352L61.507,167.238l18.845,32.619h37.689l18.845-32.619Z" fill="none" stroke="#ba8841" stroke-miterlimit="10" stroke-width="8.289"/>
+      <path id="Path_25" data-name="Path 25" d="M174.368,102H136.679L117.834,134.62l18.845,32.619h37.689l18.845-32.619Z" fill="none" stroke="#ba8841" stroke-miterlimit="10" stroke-width="8.289"/>
+    </g>
+  </g>
+</svg>

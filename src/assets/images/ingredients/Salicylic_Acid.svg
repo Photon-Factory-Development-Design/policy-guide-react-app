@@ -1,0 +1,19 @@
+<svg id="Vector_Smart_Object" data-name="Vector Smart Object" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="242.564" height="229.954" viewBox="0 0 242.564 229.954">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_12" data-name="Rectangle 12" width="242.564" height="229.953" fill="none"/>
+    </clipPath>
+  </defs>
+  <path id="Path_59" data-name="Path 59" d="M23.975,152.66v51.528L68.6,229.954l44.625-25.766V152.66L68.6,126.9Z" fill="#ba8841"/>
+  <line id="Line_13" data-name="Line 13" y1="64.253" transform="translate(68.598 66.764)" fill="none" stroke="#ba8841" stroke-miterlimit="10" stroke-width="7.214"/>
+  <line id="Line_14" data-name="Line 14" y1="33.262" x2="58.862" transform="translate(111.162 121.458)" fill="none" stroke="#ba8841" stroke-miterlimit="10" stroke-width="7.214"/>
+  <line id="Line_15" data-name="Line 15" x1="34.417" y1="29.162" transform="translate(34.181 40.198)" fill="none" stroke="#ba8841" stroke-miterlimit="10" stroke-width="7.214"/>
+  <line id="Line_16" data-name="Line 16" y1="29.162" x2="34.417" transform="translate(68.598 40.198)" fill="none" stroke="#ba8841" stroke-miterlimit="10" stroke-width="7.214"/>
+  <g id="Group_24" data-name="Group 24">
+    <g id="Group_23" data-name="Group 23" clip-path="url(#clip-path)">
+      <text id="O" transform="translate(0 35.04)" fill="#ba8841" font-size="41" font-family="SegoeUI, Segoe UI"><tspan x="0" y="0">O</tspan></text>
+      <text id="OH" transform="translate(106.559 35.04)" fill="#ba8841" font-size="41" font-family="SegoeUI, Segoe UI"><tspan x="0" y="0">OH</tspan></text>
+      <text id="OH-2" data-name="OH" transform="translate(176.183 122.475)" fill="#ba8841" font-size="41" font-family="SegoeUI, Segoe UI"><tspan x="0" y="0">OH</tspan></text>
+    </g>
+  </g>
+</svg>

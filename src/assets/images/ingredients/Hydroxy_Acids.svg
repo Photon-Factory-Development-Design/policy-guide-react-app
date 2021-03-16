@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="248" height="204" viewBox="0 0 248 204">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_3" data-name="Rectangle 3" width="248" height="204" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Vector_Smart_Object" data-name="Vector Smart Object" transform="translate(-869 -2950)">
+    <g id="Vector_Smart_Object-2" data-name="Vector Smart Object" transform="translate(869 2950)">
+      <path id="Path_17" data-name="Path 17" d="M180.083,133.363,147.621,77.035H82.7L50.234,133.363" fill="none" stroke="#ba8841" stroke-miterlimit="10" stroke-width="9.098"/>
+      <line id="Line_3" data-name="Line 3" y1="36.81" x2="43.366" transform="translate(151.444 40.225)" fill="none" stroke="#ba8841" stroke-miterlimit="10" stroke-width="9.098"/>
+      <line id="Line_4" data-name="Line 4" y1="40.511" x2="47.726" transform="translate(157.425 52.752)" fill="none" stroke="#ba8841" stroke-miterlimit="10" stroke-width="9.098"/>
+      <g id="Group_6" data-name="Group 6">
+        <g id="Group_5" data-name="Group 5" clip-path="url(#clip-path)">
+          <text id="O" transform="translate(203.852 44.228)" fill="#ba8841" font-size="52" font-family="SegoeUI, Segoe UI"><tspan x="0" y="0">O</tspan></text>
+          <text id="HO" transform="translate(-0.011 189.714)" fill="#ba8841" font-size="52" font-family="SegoeUI, Segoe UI"><tspan x="0" y="0">HO</tspan></text>
+          <text id="OH" transform="translate(148.38 189.714)" fill="#ba8841" font-size="52" font-family="SegoeUI, Segoe UI"><tspan x="0" y="0">OH</tspan></text>
+        </g>
+      </g>
+    </g>
+    <path id="Color_Overlay" data-name="Color Overlay" d="M1024.427,3135.219q-4.659-5.1-4.659-13.279,0-8.786,4.748-14.016t12.923-5.231a15.626,15.626,0,0,1,12.15,5.078q4.608,5.079,4.608,13.28,0,8.913-4.722,14.092t-12.645,5.179Q1029.085,3140.323,1024.427,3135.219Zm3.389-24.527q-3.582,4.139-3.58,10.867t3.491,10.829a11.388,11.388,0,0,0,9.1,4.1,11.953,11.953,0,0,0,9.446-3.91q3.453-3.91,3.453-10.943,0-7.21-3.353-11.146a11.491,11.491,0,0,0-9.241-3.936A11.736,11.736,0,0,0,1027.816,3110.693Zm-114.863,24.527q-4.659-5.1-4.659-13.279,0-8.786,4.748-14.016t12.924-5.231a15.624,15.624,0,0,1,12.149,5.078q4.609,5.079,4.608,13.28,0,8.913-4.722,14.092t-12.644,5.179Q917.61,3140.323,912.953,3135.219Zm3.389-24.527q-3.58,4.139-3.58,10.867t3.492,10.829a11.387,11.387,0,0,0,9.1,4.1,11.952,11.952,0,0,0,9.445-3.91q3.453-3.91,3.453-10.943,0-7.21-3.352-11.146a11.493,11.493,0,0,0-9.242-3.936A11.738,11.738,0,0,0,916.342,3110.693Zm168.12,29.021v-16.606h-18.839v16.606h-4.266V3103.3h4.266v15.971h18.839V3103.3h4.266v36.41Zm-187.594,0v-16.606h-18.84v16.606h-4.266V3103.3h4.266v15.971h18.84V3103.3h4.265v36.41Zm22.367-56.35,32.462-56.329h64.924l32.461,56.329Zm154.916-80.612-47.725,40.511Zm-10.341-12.526-43.366,36.809Zm16.088-.491q-4.66-5.1-4.659-13.28,0-8.784,4.748-14.016t12.924-5.23a15.619,15.619,0,0,1,12.149,5.078q4.609,5.079,4.609,13.28,0,8.911-4.723,14.091t-12.644,5.179Q1084.558,2994.837,1079.9,2989.734Zm3.389-24.528q-3.58,4.139-3.58,10.867t3.491,10.829a11.384,11.384,0,0,0,9.1,4.1,11.954,11.954,0,0,0,9.445-3.91q3.452-3.911,3.453-10.943,0-7.212-3.352-11.146a11.491,11.491,0,0,0-9.242-3.936A11.739,11.739,0,0,0,1083.288,2965.207Z" fill="#fff"/>
+  </g>
+</svg>
