@@ -103,7 +103,7 @@ const renderGroup = params => [
 
 const CustomComboBox = ({
   onChange,
-  value = '',
+  value,
   options,
   optionRenderer,
   label,
@@ -151,10 +151,11 @@ const CustomComboBox = ({
 
   // runs it once at start
   useDeepCompareEffectNoCheck(() => {
-    runValidator(props.value);
-  }, [submitted]);
+    runValidator(value);
+  }, [submitted, value]);
 
   console.log('validationError', validationError);
+  console.log(value, props.name)
 
   return (
     <Autocomplete

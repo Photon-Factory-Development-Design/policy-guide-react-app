@@ -45,13 +45,13 @@ const TextField = ({ validator, onValidated, submitted, ...props }) => {
     );
 
     // hooks the run validator function into the onChange callback
-    // const onChange = props.onChange;
-    // props.onChange = onChange
-    //     ? (event) => {
-    //           onChange(event);
-    //           // runValidator(event);
-    //       }
-    //     : runValidator;
+    const onChange = props.onChange;
+    props.onChange = onChange
+        ? (event) => {
+              onChange(event);
+              runValidator(event);
+          }
+        : runValidator;
 
     // runs it once at start
     useDeepCompareEffectNoCheck(() => {

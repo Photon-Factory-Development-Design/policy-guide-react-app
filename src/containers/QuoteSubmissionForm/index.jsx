@@ -6,7 +6,8 @@ import {
     CardContent,
     Grid,
     CardActions,
-    Button
+    Button,
+    CircularProgress
 } from '@material-ui/core';
 import {
     Typography,
@@ -30,25 +31,27 @@ const CSG_URLS = {
     QUOTES: 'https://csgapi.appspot.com/v1/med_supp/quotes.json'
 };
 
-const QuotesSubmissionForm = () => {
+const QuotesSubmissionForm = ({ onUpdate }) => {
     const [zipcode, setZipcode] = React.useState('98110');
     const [age, setAge] = React.useState(65);
-    const [gender, setGender] = React.useState({});
-    const [tobacco, setTobacco] = React.useState({});
-    const [plan, setPlan] = React.useState({});
+    const [gender, setGender] = React.useState();
+    const [tobacco, setTobacco] = React.useState();
+    const [plan, setPlan] = React.useState();
     const [effectiveDate, setEffectiveDate] = React.useState(
         null /*new Date()*/
     );
     const [error, setError] = React.useState({});
     const [submitted, setSubmitted] = React.useState(false);
+    const [loading, setLoading] = React.useState(0);
 
     // submitted handler
     const getQuote = async () => {
         setSubmitted(true);
 
-        console.log(error);
-        if (checkErrorObjValidated(error)) {
-            // TODO: create API to CSG
+        if (checkErrorObjValidated(error) && !loading) {
+            setLoading((prev) => prev + 1);
+
+            // create API to CSG
             const jsonData = {
                 method: 'GET',
                 url: CSG_URLS.QUOTES,
@@ -61,18 +64,23 @@ const QuotesSubmissionForm = () => {
                     fields: 'company_base.name_full'
                 }
             };
+            try {
+                const response = await axios({
+                    url: FB_FUNCTION_URL,
+                    params: {
+                        axios: JSON.stringify(jsonData)
+                    },
+                    method: 'GET'
+                });
 
-            const response = await axios({
-                url: FB_FUNCTION_URL,
-                params: {
-                    axios: JSON.stringify(jsonData)
-                },
-                method: 'GET'
-            });
-
-            // TODO: pass the result to parent
-            if (response.status === 200 && response.data.result) {
-                console.log(response.data.result);
+                // TODO: pass the result to parent
+                if (response.status === 200 && response.data.result) {
+                    onUpdate(response.data.result);
+                }
+            } catch (e) {
+                console.log(e);
+            } finally {
+                setLoading((prev) => prev - 1);
             }
         }
         return;
@@ -142,7 +150,10 @@ const QuotesSubmissionForm = () => {
                                 label="Gender"
                                 placeholder="Female"
                                 value={gender}
-                                onChange={(e, value) => setGender(value)}
+                                onChange={(e, value) => {
+                                    console.log(value);
+                                    setGender(value);
+                                }}
                                 required
                                 submitted={submitted}
                                 onValidated={onValidated}
@@ -217,7 +228,13 @@ const QuotesSubmissionForm = () => {
             <CardActions>
                 <Box px={2}>
                     <Button onClick={getQuote} color="secondary">
-                        Get Quote
+                        <Box
+                            display="flex"
+                            flexDirection="row"
+                            alignItems="center">
+                            <Box px={1}>Get Quote</Box>{' '}
+                            {!!loading && <CircularProgress size={20} />}
+                        </Box>
                     </Button>
                 </Box>
             </CardActions>
