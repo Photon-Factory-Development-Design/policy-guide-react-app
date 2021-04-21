@@ -3,6 +3,7 @@ import { getProxy, fields } from './proxy';
 import { Grid, Box, Card, LinearProgress } from '@material-ui/core';
 import { Typography } from 'components';
 import LabelItem from './LabelItem.jsx';
+import { PlanFeatures } from 'containers/QuoteSubmissionForm/options';
 
 // result fields to display in result panel
 const resultFields = Object.keys(fields)
@@ -11,6 +12,28 @@ const resultFields = Object.keys(fields)
         label: fields[key].label,
         field: key
     }));
+
+const PlanFeaturesContainer = ({ plan }) => {
+    const plans = PlanFeatures[plan];
+    console.log(plan);
+    return (
+        <React.Fragment>
+            <Grid container direction="row">
+                <Grid item xs={12} md={4}>
+                    <Typography>
+                        <Box fontWeight={900}>Plan Features:</Box>
+                    </Typography>
+                </Grid>
+                <Grid item xs={12} md={8}>
+                    {plans &&
+                        plans.map((plan, index) => (
+                            <Typography key={index}>{plan}</Typography>
+                        ))}
+                </Grid>
+            </Grid>
+        </React.Fragment>
+    );
+};
 
 const SuppResultItem = ({ data }) => {
     // proxy object
@@ -67,6 +90,11 @@ const SuppResultItem = ({ data }) => {
                                         />
                                     </Grid>
                                 ))}
+                                <Grid item xs={12}>
+                                    <PlanFeaturesContainer
+                                        plan={proxy['PLAN']}
+                                    />
+                                </Grid>
                             </Grid>
                         </Box>
                     </Grid>
