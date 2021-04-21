@@ -1,16 +1,13 @@
 import React from 'react';
 import './assets/styles/base.scss';
 import DateFnsUtils from '@date-io/date-fns';
-import {
-    QuoteSubmissionForm,
-    SuppResultItem,
-    FilterContainer
-} from 'containers';
+import { SuppResultItem, FilterContainer } from 'containers';
 import { Container, ThemeProvider, Grid } from '@material-ui/core';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import theme from 'theme';
 import { deepClone } from 'utils/array_utils';
 import { getProxy } from 'containers/SuppResultItem/proxy';
+import VerticalLinearStepper from 'components/VerticalStepper';
 
 const PriceFilters = [
     { min: 0, max: 1000 },
@@ -85,29 +82,34 @@ function App() {
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <ThemeProvider theme={theme}>
                     <Container>
-                        <QuoteSubmissionForm
-                            onUpdate={(items) => onUpdateItems(items, true)}
-                        />
-
-                        <Grid container direction="row" spacing={2}>
-                            <Grid item xs={12} md={3}>
-                                <FilterContainer
-                                    companies={companies}
-                                    prices={prices}
-                                    items={originalItemsRef.current}
-                                    onUpdateItems={onUpdateItems}
-                                />
-                            </Grid>
-                            <Grid item xs={12} md={9}>
-                                <Grid container direction="column">
-                                    {items.map((item, index) => (
-                                        <Grid item key={`result-item-${index}`}>
-                                            <SuppResultItem data={item} />
-                                        </Grid>
-                                    ))}
+                        {items.length > 0 && (
+                            <Grid container direction="row" spacing={2}>
+                                <Grid item xs={12} md={3}>
+                                    <FilterContainer
+                                        companies={companies}
+                                        prices={prices}
+                                        items={originalItemsRef.current}
+                                        onUpdateItems={onUpdateItems}
+                                    />
+                                </Grid>
+                                <Grid item xs={12} md={9}>
+                                    <Grid container direction="column">
+                                        {items.map((item, index) => (
+                                            <Grid
+                                                item
+                                                key={`result-item-${index}`}>
+                                                <SuppResultItem data={item} />
+                                            </Grid>
+                                        ))}
+                                    </Grid>
                                 </Grid>
                             </Grid>
-                        </Grid>
+                        )}
+                        {items.length === 0 && (
+                            <VerticalLinearStepper
+                                onUpdate={(items) => onUpdateItems(items, true)}
+                            />
+                        )}
                     </Container>
                 </ThemeProvider>
             </MuiPickersUtilsProvider>
