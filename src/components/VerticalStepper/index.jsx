@@ -21,7 +21,8 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'right'
     },
     stepLabelRoot: {
-        flexDirection: 'row-reverse'
+        flexDirection: 'row-reverse',
+        cursor: 'pointer'
     },
     stepLabelLabel: {
         color: 'rgb(233, 64, 87) !important'
@@ -128,7 +129,7 @@ export default function VerticalLinearStepper({ onUpdate }) {
                 url: CSG_URLS.QUOTES,
                 params: {
                     zip5: zipcode,
-                    age: age,
+                    age: parseInt(age),
                     gender: gender.value,
                     tobacco: tobacco.value,
                     effective_date: moment(effectiveDate).format('YYYY-MM-DD'),
@@ -404,9 +405,14 @@ export default function VerticalLinearStepper({ onUpdate }) {
                         activeStep={activeStep}
                         connector={null}
                         orientation="vertical">
-                        {steps.map((label) => (
+                        {steps.map((label, index) => (
                             <Step key={label}>
                                 <StepLabel
+                                    onClick={() =>
+                                        setActiveStep((prev) =>
+                                            Math.min(prev, index)
+                                        )
+                                    }
                                     StepIconComponent={Icon}
                                     classes={{
                                         root: classes.stepLabelRoot,
