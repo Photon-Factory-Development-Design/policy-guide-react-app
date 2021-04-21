@@ -1,7 +1,7 @@
 export const GenderOptions = [
     {
         value: 'F',
-        label: 'Femail'
+        label: 'Female'
     },
     {
         value: 'M',
