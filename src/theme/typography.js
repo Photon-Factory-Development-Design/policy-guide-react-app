@@ -11,10 +11,12 @@ const typography = {
         '"Segoe UI Symbol"'
     ],
     h1: {
-        fontSize: '70px'
+        fontSize: '70px',
+        fontWeight: 400
     },
     h2: {
-        fontSize: '60px'
+        fontSize: '50px',
+        fontWeight: 400
     },
     body1: {
         fontSize: '14px'

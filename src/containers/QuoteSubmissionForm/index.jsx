@@ -1,4 +1,3 @@
-import moment from 'moment';
 import React from 'react';
 import {
     Card,
@@ -13,16 +12,15 @@ import {
     Typography,
     BackgroundContainer,
     CustomComboBox,
-    KeyboardDatePicker,
     TextField
 } from 'components';
 import {
     GenderOptions,
-    PlanOptions,
     TobaccoOptions /*  */
 } from 'containers/QuoteSubmissionForm/options';
 import { checkErrorObjValidated } from 'utils/array_utils';
 import axios from 'axios';
+import { useDeepCompareEffectNoCheck } from 'use-deep-compare-effect';
 
 // the URL endpoint to make CSG API Request
 const FB_FUNCTION_URL =
@@ -31,18 +29,22 @@ const CSG_URLS = {
     QUOTES: 'https://csgapi.appspot.com/v1/med_supp/quotes.json'
 };
 
-const QuotesSubmissionForm = ({ onUpdate }) => {
-    const [zipcode, setZipcode] = React.useState('98110');
-    const [age, setAge] = React.useState(65);
-    const [gender, setGender] = React.useState();
-    const [tobacco, setTobacco] = React.useState();
-    const [plan, setPlan] = React.useState();
-    const [effectiveDate, setEffectiveDate] = React.useState(
-        null /*new Date()*/
-    );
+const QuotesSubmissionForm = ({ onUpdate, data }) => {
+    const [zipcode, setZipcode] = React.useState(data.zipcode || '98110');
+    const [age, setAge] = React.useState(data.age || 65);
+    const [gender, setGender] = React.useState(data.gender || '');
+    const [tobacco, setTobacco] = React.useState(data.tobacco || '');
     const [error, setError] = React.useState({});
+
     const [submitted, setSubmitted] = React.useState(false);
     const [loading, setLoading] = React.useState(0);
+
+    useDeepCompareEffectNoCheck(() => {
+        setZipcode(data.zipcode);
+        setAge(data.age);
+        setGender(data.gender);
+        setTobacco(data.tobacco);
+    }, [data])
 
     // submitted handler
     const getQuote = async () => {
@@ -60,7 +62,6 @@ const QuotesSubmissionForm = ({ onUpdate }) => {
                     age: age,
                     gender: gender.value,
                     tobacco: tobacco.value,
-                    effective_date: moment(effectiveDate).format('YYYY-MM-DD'),
                     fields: 'company_base.name_full'
                 }
             };
@@ -75,7 +76,13 @@ const QuotesSubmissionForm = ({ onUpdate }) => {
 
                 // TODO: pass the result to parent
                 if (response.status === 200 && response.data.result) {
-                    onUpdate(response.data.result);
+                    onUpdate(response.data.result, {
+                        zipcode: zipcode,
+                        age: age,
+                        gender: gender,
+                        tobacco: tobacco,
+                        fields: 'company_base.name_full'
+                    });
                 }
             } catch (e) {
                 console.log(e);
@@ -91,6 +98,8 @@ const QuotesSubmissionForm = ({ onUpdate }) => {
     const onValidated = (error, name) => {
         setError((prev) => ({ ...prev, [name]: error }));
     };
+
+    console.log(gender);
 
     return (
         <Card>
@@ -172,49 +181,6 @@ const QuotesSubmissionForm = ({ onUpdate }) => {
                                 value={tobacco}
                                 onChange={(e, value) => setTobacco(value)}
                                 name="tobacco"
-                                required
-                                submitted={submitted}
-                                onValidated={onValidated}
-                            />
-                        </Box>
-                    </Grid>
-
-                    <Grid item xs={6} md={3}>
-                        <Box p={1}>
-                            <CustomComboBox
-                                options={PlanOptions}
-                                optionRenderer={(option) => option.label || ''}
-                                size="small"
-                                label="Plan"
-                                placeholder="A"
-                                name="plan"
-                                value={plan}
-                                onChange={(e, value) => setPlan(value)}
-                                name="plan"
-                                required
-                                submitted={submitted}
-                                onValidated={onValidated}
-                            />
-                        </Box>
-                    </Grid>
-
-                    <Grid item xs={12} md={6}>
-                        <Box p={1}>
-                            <KeyboardDatePicker
-                                disableToolbar
-                                variant="inline"
-                                format="MM/dd/yyyy"
-                                margin="normal"
-                                label="Effective Date"
-                                KeyboardButtonProps={{
-                                    'aria-label': 'change date'
-                                }}
-                                value={effectiveDate}
-                                onChange={(date) => setEffectiveDate(date)}
-                                inputVariant="outlined"
-                                size="small"
-                                fullWidth
-                                name="effective-date"
                                 required
                                 submitted={submitted}
                                 onValidated={onValidated}

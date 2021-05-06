@@ -65,7 +65,7 @@ const SuppResultItem = ({ data }) => {
                         <Box p={1}>
                             <Grid container direction="column">
                                 <Typography align="center" variant="body1">
-                                    HH Discount
+                                    Household Discount
                                 </Typography>
                                 <LinearProgress
                                     value={proxy['DISCOUNT']}

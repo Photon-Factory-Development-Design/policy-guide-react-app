@@ -10,7 +10,20 @@ const Theme = createMuiTheme({
             variant: 'contained'
         }
     },
-    overrides: {}
+    overrides: {
+        MuiButton: {
+            outlined: {
+                borderRadius: '28px',
+                minWidth: 200,
+                '&:hover': {
+                    borderColor: '#f00'
+                },
+                '&:focus': {
+                    outline: 0
+                }
+            }
+        }
+    }
 });
 
 export default Theme;

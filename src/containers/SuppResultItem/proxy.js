@@ -25,7 +25,7 @@ export const fields = {
     RATING_CLASS: { label: 'Rating Class: ', fn: (data) => data.rating_class },
     MONTHLY_RATE: {
         label: 'Monthly Rate: ',
-        fn: (data) => data.rate?.month,
+        fn: (data) => data.rate?.month / 100,
         show: false
     },
     COMPANY_FULL_NAME: {

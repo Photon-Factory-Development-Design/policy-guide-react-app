@@ -3,17 +3,18 @@ import { makeStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
+import LinearProgress from '@material-ui/core/LinearProgress';
+
 import clsx from 'clsx';
 import { Button, Grid, Box, CircularProgress } from '@material-ui/core';
 import SwipeableViews from 'react-swipeable-views';
-import { TextField, CustomComboBox, KeyboardDatePicker } from 'components';
+import { TextField, CustomComboBox, Typography } from 'components';
+import { AgeCheck } from 'components/TextField/validators';
 import {
     GenderOptions,
-    TobaccoOptions,
-    PlanOptions
+    TobaccoOptions
 } from 'containers/QuoteSubmissionForm/options';
 import axios from 'axios';
-import moment from 'moment';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -40,14 +41,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-    return [
-        'Zipcode selection',
-        'Age',
-        'Gender',
-        'Tobacco',
-        'Plan',
-        'Effective Date'
-    ];
+    return ['Zipcode selection', 'Age', 'Gender', 'Tobacco'];
 }
 
 const styles = {
@@ -110,10 +104,6 @@ export default function VerticalLinearStepper({ onUpdate }) {
     const [zipcode, setZipcode] = React.useState('98110');
     const [gender, setGender] = React.useState();
     const [tobacco, setTobacco] = React.useState();
-    const [plan, setPlan] = React.useState();
-    const [effectiveDate, setEffectiveDate] = React.useState(
-        null /*new Date()*/
-    );
     const [loading, setLoading] = React.useState(0);
     const classes = useStyles();
     const steps = getSteps();
@@ -131,9 +121,7 @@ export default function VerticalLinearStepper({ onUpdate }) {
                     zip5: zipcode,
                     age: parseInt(age),
                     gender: gender.value,
-                    tobacco: tobacco.value,
-                    effective_date: moment(effectiveDate).format('YYYY-MM-DD'),
-                    fields: 'company_base.name_full'
+                    tobacco: tobacco.value
                 }
             };
             try {
@@ -147,7 +135,12 @@ export default function VerticalLinearStepper({ onUpdate }) {
 
                 // TODO: pass the result to parent
                 if (response.status === 200 && response.data.result) {
-                    onUpdate(response.data.result);
+                    onUpdate(response.data.result, {
+                        zipcode: zipcode,
+                        age: age,
+                        gender: gender,
+                        tobacco: tobacco
+                    });
                 }
             } catch (e) {
                 console.log(e);
@@ -165,7 +158,7 @@ export default function VerticalLinearStepper({ onUpdate }) {
                 break;
             }
             case 1: {
-                if (!age) return;
+                if (!age && age < 65) return;
                 break;
             }
             case 2: {
@@ -174,14 +167,6 @@ export default function VerticalLinearStepper({ onUpdate }) {
             }
             case 3: {
                 if (!tobacco) return;
-                break;
-            }
-            case 4: {
-                if (!plan) return;
-                break;
-            }
-            case 5: {
-                if (!effectiveDate) return;
                 getQuote();
                 return;
             }
@@ -194,6 +179,11 @@ export default function VerticalLinearStepper({ onUpdate }) {
 
     return (
         <div className={classes.root}>
+            <LinearProgress
+                variant="determinate"
+                value={(activeStep / 3) * 100}
+            />
+
             <Grid container direction="row" alignItems="center">
                 <Grid item xs={12} md={9}>
                     <SwipeableViews
@@ -212,20 +202,32 @@ export default function VerticalLinearStepper({ onUpdate }) {
                                 display="flex"
                                 flexDirection="column"
                                 justifyContent="center">
-                                <TextField
-                                    fullWidth
-                                    variant="outlined"
-                                    placeholder="Zip Code"
-                                    label="Zip Code"
-                                    size="small"
-                                    value={zipcode}
-                                    onChange={(e) => setZipcode(e.target.value)}
-                                    required
-                                    name="zipcode"
-                                />
-
                                 <Box py={2}>
-                                    <Button onClick={changeStep}>Next</Button>
+                                    <Typography variant="h2" align="left">
+                                        Where do you live?
+                                    </Typography>
+                                </Box>
+                                <Box display="flex" flexDirection="row">
+                                    <TextField
+                                        fullWidth
+                                        variant="outlined"
+                                        placeholder="Zip Code"
+                                        label="Zip Code"
+                                        size="small"
+                                        value={zipcode}
+                                        onChange={(e) =>
+                                            setZipcode(e.target.value)
+                                        }
+                                        required
+                                        name="zipcode"
+                                    />
+                                    <Box px={2}>
+                                        <Button
+                                            onClick={changeStep}
+                                            variant="outlined">
+                                            Continue
+                                        </Button>
+                                    </Box>
                                 </Box>
                             </Box>
                         </div>
@@ -241,21 +243,33 @@ export default function VerticalLinearStepper({ onUpdate }) {
                                 display="flex"
                                 flexDirection="column"
                                 justifyContent="center">
-                                <TextField
-                                    fullWidth
-                                    variant="outlined"
-                                    placeholder="Age"
-                                    label="Age"
-                                    size="small"
-                                    type="number"
-                                    value={age}
-                                    onChange={(e) => setAge(e.target.value)}
-                                    required
-                                    name="age"
-                                />
-
                                 <Box py={2}>
-                                    <Button onClick={changeStep}>Next</Button>
+                                    <Typography variant="h2" align="left">
+                                        How young are you? ;)
+                                    </Typography>
+                                </Box>
+                                <Box display="flex" flexDirection="row">
+                                    <TextField
+                                        fullWidth
+                                        variant="outlined"
+                                        placeholder="Age"
+                                        label="Age"
+                                        size="small"
+                                        type="number"
+                                        value={age}
+                                        onChange={(e) => setAge(e.target.value)}
+                                        required
+                                        name="age"
+                                        validator={AgeCheck}
+                                        submitted={true}
+                                    />
+                                    <Box px={2}>
+                                        <Button
+                                            onClick={changeStep}
+                                            variant="outlined">
+                                            Continue
+                                        </Button>
+                                    </Box>
                                 </Box>
                             </Box>
                         </div>
@@ -272,24 +286,36 @@ export default function VerticalLinearStepper({ onUpdate }) {
                                 display="flex"
                                 flexDirection="column"
                                 justifyContent="center">
-                                <CustomComboBox
-                                    options={GenderOptions}
-                                    optionRenderer={(option) =>
-                                        option.label || ''
-                                    }
-                                    size="small"
-                                    label="Gender"
-                                    placeholder="Female"
-                                    value={gender}
-                                    onChange={(e, value) => {
-                                        setGender(value);
-                                    }}
-                                    required
-                                    name="gender"
-                                />
-
                                 <Box py={2}>
-                                    <Button onClick={changeStep}>Next</Button>
+                                    <Typography variant="h2" align="left">
+                                        What's your gender?
+                                    </Typography>
+                                </Box>
+                                <Box display="flex" flexDirection="row">
+                                    <CustomComboBox
+                                        options={GenderOptions}
+                                        optionRenderer={(option) =>
+                                            option.label || ''
+                                        }
+                                        size="small"
+                                        label="Gender"
+                                        placeholder="Female"
+                                        value={gender}
+                                        onChange={(e, value) => {
+                                            setGender(value);
+                                        }}
+                                        required
+                                        name="gender"
+                                        fullWidth
+                                    />
+
+                                    <Box px={2}>
+                                        <Button
+                                            onClick={changeStep}
+                                            variant="outlined">
+                                            Continue
+                                        </Button>
+                                    </Box>
                                 </Box>
                             </Box>
                         </div>
@@ -305,96 +331,39 @@ export default function VerticalLinearStepper({ onUpdate }) {
                                 display="flex"
                                 flexDirection="column"
                                 justifyContent="center">
-                                <CustomComboBox
-                                    options={TobaccoOptions}
-                                    optionRenderer={(option) =>
-                                        option.label || ''
-                                    }
-                                    size="small"
-                                    label="Tobacco"
-                                    placeholder="Tobacco"
-                                    value={tobacco}
-                                    onChange={(e, value) => setTobacco(value)}
-                                    name="tobacco"
-                                    required
-                                />
-
                                 <Box py={2}>
-                                    <Button onClick={changeStep}>Next</Button>
+                                    <Typography variant="h2" align="left">
+                                        Do you use any form of tobacco products?
+                                    </Typography>
                                 </Box>
-                            </Box>
-                        </div>
+                                <Box display="flex" flexDirection="row">
+                                    <CustomComboBox
+                                        options={TobaccoOptions}
+                                        optionRenderer={(option) =>
+                                            option.label || ''
+                                        }
+                                        size="small"
+                                        label="Tobacco"
+                                        placeholder="Tobacco"
+                                        value={tobacco}
+                                        onChange={(e, value) =>
+                                            setTobacco(value)
+                                        }
+                                        name="tobacco"
+                                        required
+                                        fullWidth
+                                    />
 
-                        <div
-                            style={Object.assign(
-                                {},
-                                styles.slide,
-                                styles.slide3
-                            )}>
-                            <Box
-                                p={1}
-                                height="100%"
-                                display="flex"
-                                flexDirection="column"
-                                justifyContent="center">
-                                <CustomComboBox
-                                    options={PlanOptions}
-                                    optionRenderer={(option) =>
-                                        option.label || ''
-                                    }
-                                    size="small"
-                                    label="Plan"
-                                    placeholder="A"
-                                    name="plan"
-                                    value={plan}
-                                    onChange={(e, value) => setPlan(value)}
-                                    name="plan"
-                                    required
-                                />
-
-                                <Box py={2}>
-                                    <Button onClick={changeStep}>Next</Button>
-                                </Box>
-                            </Box>
-                        </div>
-
-                        <div
-                            style={Object.assign(
-                                {},
-                                styles.slide,
-                                styles.slide3
-                            )}>
-                            <Box
-                                p={1}
-                                height="100%"
-                                display="flex"
-                                flexDirection="column"
-                                justifyContent="center">
-                                <KeyboardDatePicker
-                                    disableToolbar
-                                    variant="inline"
-                                    format="MM/dd/yyyy"
-                                    margin="normal"
-                                    label="Effective Date"
-                                    KeyboardButtonProps={{
-                                        'aria-label': 'change date'
-                                    }}
-                                    value={effectiveDate}
-                                    onChange={(date) => setEffectiveDate(date)}
-                                    inputVariant="outlined"
-                                    size="small"
-                                    fullWidth
-                                    name="effective-date"
-                                    required
-                                />
-
-                                <Box py={2}>
-                                    <Button onClick={changeStep}>
-                                        <Box px={1}>Get Quote</Box>{' '}
-                                        {!!loading && (
-                                            <CircularProgress size={20} />
-                                        )}
-                                    </Button>
+                                    <Box px={2}>
+                                        <Button
+                                            onClick={changeStep}
+                                            variant="outlined">
+                                            <Box px={1}>Get Quote</Box>
+                                            {!!loading && (
+                                                <CircularProgress size={20} />
+                                            )}
+                                        </Button>
+                                    </Box>
                                 </Box>
                             </Box>
                         </div>
