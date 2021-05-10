@@ -1,18 +1,18 @@
 import React from 'react';
 import './assets/styles/base.scss';
 import DateFnsUtils from '@date-io/date-fns';
-import {
-    SuppResultItem,
-    FilterContainer,
-    QuoteSubmissionForm
-} from 'containers';
-import { Container, ThemeProvider, Grid } from '@material-ui/core';
+import { FilterContainer, QuoteSubmissionForm } from 'containers';
+import { Container, ThemeProvider, Grid, Box, Button } from '@material-ui/core';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import theme from 'theme';
 import { deepClone } from 'utils/array_utils';
 import { getProxy } from 'containers/SuppResultItem/proxy';
 import VerticalLinearStepper from 'components/VerticalStepper';
 import { PlanFeatures } from 'containers/QuoteSubmissionForm/options';
+import QuoteItem from 'components/QuoteItem/QuoteItem';
+import SortSelect from 'components/SortSelect/SortSelect';
+import PrintIcon from '@material-ui/icons/Print';
+import ReactToPrint from 'react-to-print';
 
 const PriceFilters = [
     { min: 0, max: 10.0 },
@@ -27,13 +27,28 @@ const PriceFilters = [
 
 function App() {
     const originalItemsRef = React.useRef([]);
+    const contentRef = React.useRef(null);
     const [items, setItems] = React.useState([]);
     const [params, setParams] = React.useState({});
     const [companies, setCompanies] = React.useState({});
     const [prices, setPrices] = React.useState({});
     const [planOptions, setPlanOptions] = React.useState({});
     const [planFeatures, setPlanFeatures] = React.useState({});
+    const [sortOption, setSortOption] = React.useState();
 
+    const sortItems = (items, option) => {
+        console.log('sortItems');
+        // sort by option
+        setItems(
+            items.sort((a, b) => {
+                const value1 = getProxy(a)[option],
+                    value2 = getProxy(b)[option];
+                if (value1 > value2) return 1;
+                else if (value1 === value2) return 0;
+                else return -1;
+            })
+        );
+    };
     // on update items from CSG API
     const onUpdateItems = (items, init = false) => {
         if (init) {
@@ -68,7 +83,6 @@ function App() {
 
                 // extract plan features
                 const currentPlanFeatures = PlanFeatures[plan];
-                console.log(currentPlanFeatures);
                 (currentPlanFeatures || []).forEach((feature) => {
                     if (!planFeatures[feature]) {
                         planFeatures[feature] = {
@@ -109,50 +123,84 @@ function App() {
             setPlanOptions(planOptions);
             setPlanFeatures(planFeatures);
         }
-        setItems(deepClone(items));
+        // sort items
+        sortItems(deepClone(items), sortOption);
+    };
+
+    const handleChange = (option) => {
+        setSortOption(option);
+        sortItems(items, option);
     };
 
     return (
         <React.Fragment>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <ThemeProvider theme={theme}>
-                    <Container>
-                        {items.length > 0 && (
-                            <React.Fragment>
-                                <QuoteSubmissionForm
-                                    onUpdate={(items, params) => {
-                                        onUpdateItems(items, true);
-                                        setParams(params);
-                                    }}
-                                    data={params}
-                                />
-                                <Grid container direction="row" spacing={2}>
-                                    <Grid item xs={12} md={3}>
-                                        <FilterContainer
-                                            companies={companies}
-                                            prices={prices}
-                                            items={originalItemsRef.current}
-                                            onUpdateItems={onUpdateItems}
-                                            planOptions={planOptions}
-                                            planFeatures={planFeatures}
+                    <Box bgcolor="background.primary">
+                        <Container>
+                            {items.length > 0 && (
+                                <React.Fragment>
+                                    <QuoteSubmissionForm
+                                        onUpdate={(items, params) => {
+                                            onUpdateItems(items, true);
+                                            setParams(params);
+                                        }}
+                                        data={params}
+                                    />
+                                    <Box
+                                        display="flex"
+                                        flexDirection="row"
+                                        justifyContent="flex-end"
+                                        bgcolor="background.secondary">
+                                        <ReactToPrint
+                                            trigger={() => {
+                                                return (
+                                                    <Button variant="text">
+                                                        <PrintIcon size={20} />
+                                                        Print
+                                                    </Button>
+                                                );
+                                            }}
+                                            content={() => contentRef.current}
                                         />
-                                    </Grid>
-                                    <Grid item xs={12} md={9}>
-                                        <Grid container direction="column">
-                                            {items.map((item, index) => (
-                                                <Grid
-                                                    item
-                                                    key={`result-item-${index}`}>
-                                                    <SuppResultItem
-                                                        data={item}
-                                                    />
-                                                </Grid>
-                                            ))}
+                                        <SortSelect
+                                            handleChange={handleChange}
+                                        />
+                                    </Box>
+                                    <Grid container direction="row" spacing={2}>
+                                        <Grid item xs={12} md={3}>
+                                            <FilterContainer
+                                                companies={companies}
+                                                prices={prices}
+                                                items={originalItemsRef.current}
+                                                onUpdateItems={onUpdateItems}
+                                                planOptions={planOptions}
+                                                planFeatures={planFeatures}
+                                            />
+                                        </Grid>
+                                        <Grid item xs={12} md={9}>
+                                            <Grid container direction="column">
+                                                <div ref={contentRef}>
+                                                    {items.map(
+                                                        (item, index) => (
+                                                            <Grid
+                                                                item
+                                                                key={`result-item-${index}`}>
+                                                                <QuoteItem
+                                                                    quote={item}
+                                                                />
+                                                            </Grid>
+                                                        )
+                                                    )}
+                                                </div>
+                                            </Grid>
                                         </Grid>
                                     </Grid>
-                                </Grid>
-                            </React.Fragment>
-                        )}
+                                </React.Fragment>
+                            )}
+                        </Container>
+                    </Box>
+                    <Container>
                         {items.length === 0 && (
                             <VerticalLinearStepper
                                 onUpdate={(items, params) => {

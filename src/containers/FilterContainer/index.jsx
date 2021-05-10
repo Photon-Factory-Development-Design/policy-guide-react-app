@@ -82,7 +82,7 @@ const FilterContainer = ({
     }, [companyFilter, priceFilter, planFilter, featureFilter]);
 
     return (
-        <Box display="flex" flexDirection="column" my={2}>
+        <Box display="flex" flexDirection="column" my={2} bgcolor="background.primary">
             <FilterOption
                 title="Companies"
                 filter={companyFilter}

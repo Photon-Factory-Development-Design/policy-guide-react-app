@@ -7,7 +7,11 @@ import {
     Box,
     Checkbox
 } from '@material-ui/core';
+import withStyles from '@material-ui/core/styles/withStyles';
 import { Typography } from 'components';
+
+// jss
+import styles from './filterOptionStyle';
 
 const FilterOption = ({
     title,
@@ -15,7 +19,8 @@ const FilterOption = ({
     setFilter,
     filterItems,
     totalLength,
-    renderer
+    renderer,
+    classes
 }) => {
     // on change for filter parm
     const onChange = (value) => {
@@ -38,7 +43,7 @@ const FilterOption = ({
     };
 
     return (
-        <Accordion>
+        <Accordion classes={{ root: classes.accordionRoot }}>
             <AccordionSummary>
                 <Typography variant="h6">{title} </Typography>
             </AccordionSummary>
@@ -75,4 +80,4 @@ const FilterOption = ({
     );
 };
 
-export default FilterOption;
+export default withStyles(styles)(FilterOption);
