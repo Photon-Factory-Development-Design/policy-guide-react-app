@@ -9,3 +9,5 @@ export { default as VerticalStepper } from './VerticalStepper';
 export { default as Button } from './Button/Button';
 export { default as PlanFeature } from './PlanFeature/PlanFeature';
 export { default as DetailAccordion } from './DetailAccordion/DetailAccordion';
+export { default as CompareCheckbox } from './CompareCheckbox/CompareCheckbox';
+export { default as CompareDrawer } from './CompareDrawer/CompareDrawer';

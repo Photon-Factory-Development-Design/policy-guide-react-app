@@ -13,6 +13,8 @@ import QuoteItem from 'components/QuoteItem/QuoteItem';
 import SortSelect from 'components/SortSelect/SortSelect';
 import PrintIcon from '@material-ui/icons/Print';
 import ReactToPrint from 'react-to-print';
+import CompareDrawer from 'components/CompareDrawer/CompareDrawer';
+import Compare from 'components/Compare/Compare';
 
 const PriceFilters = [
     { min: 0, max: 10.0 },
@@ -35,6 +37,8 @@ function App() {
     const [planOptions, setPlanOptions] = React.useState({});
     const [planFeatures, setPlanFeatures] = React.useState({});
     const [sortOption, setSortOption] = React.useState();
+    const [compareItems, setCompareItems] = React.useState([]);
+    const [showCompare, setShowCompare] = React.useState(false);
 
     const sortItems = (items, option) => {
         console.log('sortItems');
@@ -132,84 +136,153 @@ function App() {
         sortItems(items, option);
     };
 
+    const onChangeCompareItems = (item, checked) => {
+        setCompareItems((prev) => {
+            if (checked === true) {
+                return [...prev, item];
+            } else {
+                return prev.filter((obj) => obj.key !== item.key);
+            }
+        });
+    };
+
     return (
         <React.Fragment>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <ThemeProvider theme={theme}>
                     <Box bgcolor="background.primary">
-                        <Container>
-                            {items.length > 0 && (
-                                <React.Fragment>
-                                    <QuoteSubmissionForm
-                                        onUpdate={(items, params) => {
-                                            onUpdateItems(items, true);
-                                            setParams(params);
-                                        }}
-                                        data={params}
-                                    />
-                                    <Box
-                                        display="flex"
-                                        flexDirection="row"
-                                        justifyContent="flex-end"
-                                        bgcolor="background.secondary">
-                                        <ReactToPrint
-                                            trigger={() => {
-                                                return (
-                                                    <Button variant="text">
-                                                        <PrintIcon size={20} />
-                                                        Print
-                                                    </Button>
-                                                );
+                        {showCompare === false && (
+                            <Container>
+                                {items.length > 0 && (
+                                    <React.Fragment>
+                                        <QuoteSubmissionForm
+                                            onUpdate={(items, params) => {
+                                                onUpdateItems(items, true);
+                                                setParams(params);
                                             }}
-                                            content={() => contentRef.current}
+                                            data={params}
                                         />
-                                        <SortSelect
-                                            handleChange={handleChange}
-                                        />
-                                    </Box>
-                                    <Grid container direction="row" spacing={2}>
-                                        <Grid item xs={12} md={3}>
-                                            <FilterContainer
-                                                companies={companies}
-                                                prices={prices}
-                                                items={originalItemsRef.current}
-                                                onUpdateItems={onUpdateItems}
-                                                planOptions={planOptions}
-                                                planFeatures={planFeatures}
+                                        <Box
+                                            display="flex"
+                                            flexDirection="row"
+                                            justifyContent="flex-end"
+                                            bgcolor="background.secondary">
+                                            <ReactToPrint
+                                                trigger={() => {
+                                                    return (
+                                                        <Button variant="text">
+                                                            <PrintIcon
+                                                                size={20}
+                                                            />
+                                                            Print
+                                                        </Button>
+                                                    );
+                                                }}
+                                                content={() =>
+                                                    contentRef.current
+                                                }
                                             />
-                                        </Grid>
-                                        <Grid item xs={12} md={9}>
-                                            <Grid container direction="column">
-                                                <div ref={contentRef}>
-                                                    {items.map(
-                                                        (item, index) => (
-                                                            <Grid
-                                                                item
-                                                                key={`result-item-${index}`}>
-                                                                <QuoteItem
-                                                                    quote={item}
-                                                                />
-                                                            </Grid>
-                                                        )
-                                                    )}
-                                                </div>
+                                            <SortSelect
+                                                handleChange={handleChange}
+                                            />
+                                        </Box>
+                                        <Grid
+                                            container
+                                            direction="row"
+                                            spacing={2}>
+                                            <Grid item xs={12} md={3}>
+                                                <FilterContainer
+                                                    companies={companies}
+                                                    prices={prices}
+                                                    items={
+                                                        originalItemsRef.current
+                                                    }
+                                                    onUpdateItems={
+                                                        onUpdateItems
+                                                    }
+                                                    planOptions={planOptions}
+                                                    planFeatures={planFeatures}
+                                                />
+                                            </Grid>
+                                            <Grid item xs={12} md={9}>
+                                                <Grid
+                                                    container
+                                                    direction="column">
+                                                    <div ref={contentRef}>
+                                                        {items.map(
+                                                            (item, index) => (
+                                                                <Grid
+                                                                    item
+                                                                    key={`result-item-${index}`}>
+                                                                    <QuoteItem
+                                                                        index={
+                                                                            index
+                                                                        }
+                                                                        onChangeCompareItem={(
+                                                                            checked
+                                                                        ) =>
+                                                                            onChangeCompareItems(
+                                                                                item,
+                                                                                checked
+                                                                            )
+                                                                        }
+                                                                        quote={
+                                                                            item
+                                                                        }
+                                                                        compareSelected={compareItems
+                                                                            .map(
+                                                                                (
+                                                                                    obj
+                                                                                ) =>
+                                                                                    obj.key
+                                                                            )
+                                                                            .includes(
+                                                                                item.key
+                                                                            )}
+                                                                    />
+                                                                </Grid>
+                                                            )
+                                                        )}
+                                                    </div>
+                                                </Grid>
                                             </Grid>
                                         </Grid>
-                                    </Grid>
-                                </React.Fragment>
+                                    </React.Fragment>
+                                )}
+                            </Container>
+                        )}
+                    </Box>
+                    {!showCompare && (
+                        <Container>
+                            {items.length === 0 && (
+                                <VerticalLinearStepper
+                                    onUpdate={(items, params) => {
+                                        onUpdateItems(items, true);
+                                        setParams(params);
+                                    }}
+                                />
                             )}
                         </Container>
-                    </Box>
-                    <Container>
-                        {items.length === 0 && (
-                            <VerticalLinearStepper
-                                onUpdate={(items, params) => {
-                                    onUpdateItems(items, true);
-                                    setParams(params);
-                                }}
-                            />
-                        )}
-                    </Container>
+                    )}
+                    {!showCompare && (
+                        <CompareDrawer
+                            open={compareItems.length}
+                            compareItems={compareItems}
+                            onClose={() => setCompareItems([])}
+                            onCompare={() => setShowCompare(true)}
+                        />
+                    )}
+
+                    {showCompare && (
+                        <Compare
+                            onHideCompare={() => {
+                                setShowCompare(false);
+                                setCompareItems([]);
+                            }}
+                            quote1={compareItems[0]}
+                            quote2={compareItems[1]}
+                        />
+                    )}
                 </ThemeProvider>
             </MuiPickersUtilsProvider>
         </React.Fragment>

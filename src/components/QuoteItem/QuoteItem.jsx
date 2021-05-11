@@ -4,9 +4,16 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Divider from '@material-ui/core/Divider';
+import withStyles from '@material-ui/core/styles/withStyles';
 
 // core components
-import { Typography, Button, PlanFeature, DetailAccordion } from 'components';
+import {
+    Typography,
+    Button,
+    PlanFeature,
+    DetailAccordion,
+    CompareCheckbox
+} from 'components';
 import PlanDetail from 'components/PlanDetail/PlanDetail';
 import QuoteLableItem from 'components/QuoteItem/QuoteLableItem';
 
@@ -15,15 +22,29 @@ import { getProxy } from 'containers/SuppResultItem/proxy';
 import { detail_infos, PLAN_DETAILS } from 'common/data/plans';
 import PlanDetailItem from 'components/PlanDetail/PlanDetailItem';
 
-const QuoteItem = ({ quote }) => {
+// jss
+import styles from './quoteItemStyle';
+
+const QuoteItem = ({
+    quote,
+    compareSelected,
+    onChangeCompareItem,
+    index,
+    classes
+}) => {
     const proxy = getProxy(quote);
     const planDetail = PLAN_DETAILS[proxy['PLAN']] || null;
     const annualDeductible = detail_infos[0];
 
+    console.log(classes);
+
     return (
-        <Box bgcolor="background.secondary">
+        <Box
+            bgcolor="background.secondary"
+            p={5}
+            className={index % 3 === 2 ? classes.pageBreak : ''}>
             <Grid container direction="row">
-                <Grid item xs={12} md={4}>
+                <Grid item xs={4} md={4}>
                     <Box
                         display="flex"
                         flexDirection="column"
@@ -56,7 +77,7 @@ const QuoteItem = ({ quote }) => {
                         </Box>
                     </Box>
                 </Grid>
-                <Grid item xs={12} md={8}>
+                <Grid item xs={8} md={8}>
                     <img src="https://static.ehealthmedicareplans.com//ehealthinsurance/CarrierProfile/logos/HumanaMedicare.gif" />
 
                     <Typography variant="h1" fontSize="15px" fontWeight={500}>
@@ -89,6 +110,16 @@ const QuoteItem = ({ quote }) => {
                         </Box>
                     )}
                 </Grid>
+                <Box
+                    width="100%"
+                    display="flex"
+                    flexDirection="row"
+                    justifyContent="flex-end">
+                    <CompareCheckbox
+                        handleChange={onChangeCompareItem}
+                        checked={compareSelected}
+                    />
+                </Box>
                 <Divider variant="fullWidth" style={{ width: '100%' }} />
 
                 {planDetail && (
@@ -101,4 +132,4 @@ const QuoteItem = ({ quote }) => {
     );
 };
 
-export default QuoteItem;
+export default withStyles(styles)(QuoteItem);

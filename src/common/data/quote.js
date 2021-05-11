@@ -1,4 +1,4 @@
-const quotes = [
+export const quotes = [
     {
         key: 'agZjc2dhcGlyEgsSBVF1b3RlGICA2Kbe9uYJDKIBCG1lZF9zdXBw',
         age: 65,
@@ -1231,8 +1231,7 @@ const quotes = [
             parent_company:
                 'agZjc2dhcGlyGgsSDVBhcmVudENvbXBhbnkYgICAgKCSnwoMogEIbWVkX3N1cHA',
             parent_company_base: {
-                key:
-                    'agZjc2dhcGlyGgsSDVBhcmVudENvbXBhbnkYgICAgKCSnwoMogEIbWVkX3N1cHA',
+                key: 'agZjc2dhcGlyGgsSDVBhcmVudENvbXBhbnkYgICAgKCSnwoMogEIbWVkX3N1cHA',
                 code: '707',
                 established_year: 1998,
                 last_modified: '2020-06-22T15:39:37.698460',

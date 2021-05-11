@@ -17,11 +17,13 @@ const CompareQuote = ({ quote }) => {
                     {proxy['COMPANY_NAME'] || ''} Plan {proxy['PLAN']}
                 </a>
             </Typography>
-            <Box display="flex" flexDirection="row">
+            <Box display="flex" flexDirection="column">
                 <Typography variant="h1" fontSize="15px" fontWeight={900}>
                     From {proxy['MONTHLY_RATE']}{' '}
                 </Typography>
-                monthly premium
+                <Typography variant="h1" fontSize="15px">
+                    monthly premium
+                </Typography>
             </Box>
         </Box>
     );
