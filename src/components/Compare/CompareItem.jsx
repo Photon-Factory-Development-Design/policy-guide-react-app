@@ -6,7 +6,7 @@ import Divider from '@material-ui/core/Divider';
 // core components
 import { Typography } from 'components';
 
-const CompareItem = ({ label, content1, content2 }) => {
+const CompareItem = ({ label, items }) => {
     return (
         <Box py={2}>
             <Grid container direction="row">
@@ -15,29 +15,24 @@ const CompareItem = ({ label, content1, content2 }) => {
                         {label}
                     </Typography>
                 </Grid>
-                <Grid item xs={12} md={4}>
-                    {Array.isArray(content1)
-                        ? content1.map((item) => (
-                              <Typography
-                                  key={item}
-                                  fontSize={20}
-                                  fontWeight={400}>
-                                  {item}
-                              </Typography>
-                          ))
-                        : content1}
-                </Grid>
-                <Grid item xs={12} md={4}>
-                    {Array.isArray(content1)
-                        ? content2.map((item) => (
-                              <Typography
-                                  key={item}
-                                  fontSize={20}
-                                  fontWeight={400}>
-                                  {item}
-                              </Typography>
-                          ))
-                        : content2}
+                <Grid item xs={12} md={8}>
+                    <Box display="flex" flexDirection="row">
+                        {items.map((content) => (
+                            <Box flex={1}>
+                                {Array.isArray(content)
+                                    ? content.map((item) => (
+                                          <Typography
+                                              key={item}
+                                              fontSize={20}
+                                              fontWeight={400}>
+                                              {item}
+                                          </Typography>
+                                      ))
+                                    : content}
+                            </Box>
+                        ))}
+                        {}
+                    </Box>
                 </Grid>
             </Grid>
             <Divider style={{ width: '100%' }} />

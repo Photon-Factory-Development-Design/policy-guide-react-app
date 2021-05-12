@@ -343,8 +343,8 @@ export default function VerticalLinearStepper({ onUpdate }) {
                                             option.label || ''
                                         }
                                         size="small"
-                                        label="Tobacco"
-                                        placeholder="Tobacco"
+                                        label="Please Choose"
+                                        placeholder="Please Choose"
                                         value={tobacco}
                                         onChange={(e, value) =>
                                             setTobacco(value)

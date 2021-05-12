@@ -29,6 +29,7 @@ const QuoteItem = ({
     quote,
     compareSelected,
     onChangeCompareItem,
+    canCompare,
     index,
     classes
 }) => {
@@ -116,6 +117,7 @@ const QuoteItem = ({
                     flexDirection="row"
                     justifyContent="flex-end">
                     <CompareCheckbox
+                        disabled={!canCompare && !compareSelected}
                         handleChange={onChangeCompareItem}
                         checked={compareSelected}
                     />

@@ -12,7 +12,6 @@ import { PlanFeatures } from 'containers/QuoteSubmissionForm/options';
 import QuoteItem from 'components/QuoteItem/QuoteItem';
 import SortSelect from 'components/SortSelect/SortSelect';
 import PrintIcon from '@material-ui/icons/Print';
-import ReactToPrint from 'react-to-print';
 import CompareDrawer from 'components/CompareDrawer/CompareDrawer';
 import Compare from 'components/Compare/Compare';
 
@@ -151,107 +150,143 @@ function App() {
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <ThemeProvider theme={theme}>
                     <Box bgcolor="background.primary">
-                        {showCompare === false && (
+                        <div hidden={showCompare || items.length === 0}>
                             <Container>
                                 {items.length > 0 && (
                                     <React.Fragment>
-                                        <QuoteSubmissionForm
-                                            onUpdate={(items, params) => {
-                                                onUpdateItems(items, true);
-                                                setParams(params);
-                                            }}
-                                            data={params}
-                                        />
-                                        <Box
-                                            display="flex"
-                                            flexDirection="row"
-                                            justifyContent="flex-end"
-                                            bgcolor="background.secondary">
-                                            <ReactToPrint
-                                                trigger={() => {
-                                                    return (
-                                                        <Button variant="text">
-                                                            <PrintIcon
-                                                                size={20}
-                                                            />
-                                                            Print
-                                                        </Button>
-                                                    );
+                                        <div className="no-print">
+                                            <QuoteSubmissionForm
+                                                onUpdate={(items, params) => {
+                                                    onUpdateItems(items, true);
+                                                    setParams(params);
                                                 }}
-                                                content={() =>
-                                                    contentRef.current
-                                                }
+                                                data={params}
                                             />
-                                            <SortSelect
-                                                handleChange={handleChange}
-                                            />
-                                        </Box>
-                                        <Grid
-                                            container
-                                            direction="row"
-                                            spacing={2}>
-                                            <Grid item xs={12} md={3}>
-                                                <FilterContainer
-                                                    companies={companies}
-                                                    prices={prices}
-                                                    items={
-                                                        originalItemsRef.current
-                                                    }
-                                                    onUpdateItems={
-                                                        onUpdateItems
-                                                    }
-                                                    planOptions={planOptions}
-                                                    planFeatures={planFeatures}
+                                            <Box
+                                                display="flex"
+                                                flexDirection="row"
+                                                justifyContent="flex-end"
+                                                bgcolor="background.secondary">
+                                                <Button
+                                                    variant="text"
+                                                    onClick={() =>
+                                                        window.print()
+                                                    }>
+                                                    <PrintIcon size={20} />
+                                                    Print
+                                                </Button>
+                                                <SortSelect
+                                                    handleChange={handleChange}
                                                 />
-                                            </Grid>
-                                            <Grid item xs={12} md={9}>
-                                                <Grid
-                                                    container
-                                                    direction="column">
-                                                    <div ref={contentRef}>
-                                                        {items.map(
-                                                            (item, index) => (
-                                                                <Grid
-                                                                    item
-                                                                    key={`result-item-${index}`}>
-                                                                    <QuoteItem
-                                                                        index={
-                                                                            index
-                                                                        }
-                                                                        onChangeCompareItem={(
-                                                                            checked
-                                                                        ) =>
-                                                                            onChangeCompareItems(
-                                                                                item,
+                                            </Box>
+                                            <Grid
+                                                container
+                                                direction="row"
+                                                spacing={2}>
+                                                <Grid item xs={12} md={3}>
+                                                    <FilterContainer
+                                                        companies={companies}
+                                                        prices={prices}
+                                                        items={
+                                                            originalItemsRef.current
+                                                        }
+                                                        onUpdateItems={
+                                                            onUpdateItems
+                                                        }
+                                                        planOptions={
+                                                            planOptions
+                                                        }
+                                                        planFeatures={
+                                                            planFeatures
+                                                        }
+                                                    />
+                                                </Grid>
+                                                <Grid item xs={12} md={9}>
+                                                    <Grid
+                                                        container
+                                                        direction="column">
+                                                        <div ref={contentRef}>
+                                                            {items.map(
+                                                                (
+                                                                    item,
+                                                                    index
+                                                                ) => (
+                                                                    <Grid
+                                                                        item
+                                                                        key={`result-item-${index}`}>
+                                                                        <QuoteItem
+                                                                            canCompare={
+                                                                                compareItems.length <
+                                                                                3
+                                                                            }
+                                                                            index={
+                                                                                index
+                                                                            }
+                                                                            onChangeCompareItem={(
                                                                                 checked
-                                                                            )
-                                                                        }
-                                                                        quote={
-                                                                            item
-                                                                        }
-                                                                        compareSelected={compareItems
-                                                                            .map(
-                                                                                (
-                                                                                    obj
-                                                                                ) =>
-                                                                                    obj.key
-                                                                            )
-                                                                            .includes(
-                                                                                item.key
-                                                                            )}
-                                                                    />
-                                                                </Grid>
-                                                            )
-                                                        )}
-                                                    </div>
+                                                                            ) =>
+                                                                                onChangeCompareItems(
+                                                                                    item,
+                                                                                    checked
+                                                                                )
+                                                                            }
+                                                                            quote={
+                                                                                item
+                                                                            }
+                                                                            compareSelected={compareItems
+                                                                                .map(
+                                                                                    (
+                                                                                        obj
+                                                                                    ) =>
+                                                                                        obj.key
+                                                                                )
+                                                                                .includes(
+                                                                                    item.key
+                                                                                )}
+                                                                        />
+                                                                    </Grid>
+                                                                )
+                                                            )}
+                                                        </div>
+                                                    </Grid>
                                                 </Grid>
                                             </Grid>
-                                        </Grid>
+                                        </div>
                                     </React.Fragment>
                                 )}
                             </Container>
-                        )}
+                        </div>
                     </Box>
+                    {items.length > 0 && (
+                        <div className="print">
+                            <Grid container direction="column">
+                                <div ref={contentRef}>
+                                    {items.map((item, index) => (
+                                        <Grid item key={`result-item-${index}`}>
+                                            <QuoteItem
+                                                canCompare={
+                                                    compareItems.length < 3
+                                                }
+                                                index={index}
+                                                onChangeCompareItem={(
+                                                    checked
+                                                ) =>
+                                                    onChangeCompareItems(
+                                                        item,
+                                                        checked
+                                                    )
+                                                }
+                                                quote={item}
+                                                compareSelected={compareItems
+                                                    .map((obj) => obj.key)
+                                                    .includes(item.key)}
+                                            />
+                                        </Grid>
+                                    ))}
+                                </div>
+                            </Grid>
+                        </div>
+                    )}
                     {!showCompare && (
                         <Container>
                             {items.length === 0 && (
@@ -279,8 +314,7 @@ function App() {
                                 setShowCompare(false);
                                 setCompareItems([]);
                             }}
-                            quote1={compareItems[0]}
-                            quote2={compareItems[1]}
+                            compareItems={compareItems}
                         />
                     )}
                 </ThemeProvider>

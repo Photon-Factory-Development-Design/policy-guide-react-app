@@ -6,7 +6,8 @@ import Checkbox from '@material-ui/core/Checkbox';
 
 const CompareCheckbox = ({
     handleChange: propsHandleChange,
-    checked: propsChecked
+    checked: propsChecked,
+    disabled
 }) => {
     const [checked, setChecked] = React.useState(false);
 
@@ -22,6 +23,7 @@ const CompareCheckbox = ({
         <FormControlLabel
             control={
                 <Checkbox
+                    disabled={disabled}
                     checked={checked}
                     onChange={handleChange}
                     name="Compare"
