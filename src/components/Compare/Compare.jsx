@@ -1,6 +1,7 @@
 import React from 'react';
 // material ui components
 import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 // core component
@@ -14,7 +15,7 @@ import ComparePlanItem from 'components/Compare/ComparePlanItem';
 const Compare = ({ compareItems, onHideCompare }) => {
     const renderCompareQuote = React.useCallback(
         (quote) => {
-            return <CompareQuote quote={quote} />;
+            return <CompareQuote quote={quote} flex={1} />;
         },
         [compareItems]
     );
@@ -29,9 +30,16 @@ const Compare = ({ compareItems, onHideCompare }) => {
                 <Button onClick={onHideCompare} variant="text">
                     Go Back
                 </Button>
-                <Box display="flex" flexDirection="row" justifyContent="center">
-                    {compareItems.map((quote) => renderCompareQuote(quote))}
-                </Box>
+                <Grid container direction="row">
+                    <Grid item md={4} xs={12}></Grid>
+                    <Grid item md={8} xs={12}>
+                        <Box display="flex" flexDirection="row">
+                            {compareItems.map((quote) =>
+                                renderCompareQuote(quote)
+                            )}
+                        </Box>
+                    </Grid>
+                </Grid>
                 <Box>
                     <CompareItem
                         label="Monthly Premium"

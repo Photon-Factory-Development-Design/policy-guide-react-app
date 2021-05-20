@@ -17,7 +17,7 @@ const CompareDrawer = ({ open, compareItems, onClose, onCompare }) => {
         <Drawer anchor="bottom" open={open} variant="persistent">
             <Box display="flex" flexDirection="row" justifyContent="center">
                 {compareItems.map((item) => (
-                    <CompareQuote key={item.key} quote={item} />
+                    <CompareQuote key={item.key} quote={item} px={2} />
                 ))}
 
                 <Button

@@ -7,11 +7,11 @@ import { Typography } from 'components';
 // proxy
 import { getProxy } from 'containers/SuppResultItem/proxy';
 
-const CompareQuote = ({ quote }) => {
+const CompareQuote = ({ quote, ...props }) => {
     const proxy = React.useMemo(() => getProxy(quote), [quote]);
 
     return (
-        <Box p={2}>
+        <Box py={2} {...props}>
             <Typography variant="h1" fontSize="15px" fontWeight={500}>
                 <a href="#">
                     {proxy['COMPANY_NAME'] || ''} Plan {proxy['PLAN']}
