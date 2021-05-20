@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
         cursor: 'pointer'
     },
     stepLabelLabel: {
-        color: 'rgb(233, 64, 87) !important',
+        color: '#009F83 !important',
         fontSize: '16px'
     },
     button: {
@@ -70,7 +70,7 @@ const useColorlibStepIconStyles = makeStyles({
     active: {
         height: 60,
         width: 2,
-        backgroundColor: 'rgb(233, 64, 87)'
+        backgroundColor: '#009F83'
     },
     completed: {
         height: 60,

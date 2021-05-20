@@ -16,7 +16,7 @@ const Theme = createMuiTheme({
                 borderRadius: '28px',
                 minWidth: 200,
                 '&:hover': {
-                    borderColor: '#f00'
+                    borderColor: '#009F83'
                 },
                 '&:focus': {
                     outline: 0
