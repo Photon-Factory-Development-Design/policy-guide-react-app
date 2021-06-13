@@ -7,8 +7,8 @@ import styles from './buttonStyles';
 import MuiButton from '@material-ui/core/Button';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-const Button = ({ classes, ...props }) => {
-    return <MuiButton {...props} classes={{ root: classes.root }} />;
+const Button = ({ classes, color = 'root', ...props }) => {
+    return <MuiButton {...props} classes={{ root: classes[color] }} />;
 };
 
 export default withStyles(styles)(Button);

@@ -1,15 +1,20 @@
 {
   "files": {
-    "main.css": "/static/css/main.24229b9a.css",
+    "main.css": "/static/css/main.b4f9816f.css",
     "main.js": "/static/js/main.js",
-    "main.css.map": "/static/css/main.24229b9a.css.map",
+    "main.css.map": "/static/css/main.b4f9816f.css.map",
     "main.js.map": "/static/js/main.js.map",
     "static/js/1.chunk.js": "/static/js/1.chunk.js",
     "static/js/1.chunk.js.map": "/static/js/1.chunk.js.map",
-    "index.html": "/index.html"
+    "index.html": "/index.html",
+    "static/media/Age_Regular.f5eaecb7.svg": "/static/media/Age_Regular.f5eaecb7.svg",
+    "static/media/Gender_Regular.c483a3a9.svg": "/static/media/Gender_Regular.c483a3a9.svg",
+    "static/media/base.scss": "/static/media/Helvetica Neue Regular.81376695.woff",
+    "static/media/Location_Regular.c0018b65.svg": "/static/media/Location_Regular.c0018b65.svg",
+    "static/media/Smoking_Regular.8a79c11b.svg": "/static/media/Smoking_Regular.8a79c11b.svg"
   },
   "entrypoints": [
-    "static/css/main.24229b9a.css",
+    "static/css/main.b4f9816f.css",
     "static/js/main.js"
   ]
 }

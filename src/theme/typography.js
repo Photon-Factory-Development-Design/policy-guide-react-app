@@ -1,9 +1,9 @@
 const typography = {
     fontFamily: [
+        '"Helvetica Neue"',
         '-apple-system',
         '"Segoe UI"',
         'Roboto',
-        '"Helvetica Neue"',
         'Arial',
         'sans-serif',
         '"Apple Color Emoji"',

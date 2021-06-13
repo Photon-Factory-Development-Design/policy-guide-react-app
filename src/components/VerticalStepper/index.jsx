@@ -3,18 +3,28 @@ import { makeStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
+import StepConnector from '@material-ui/core/StepConnector';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import withStyles from '@material-ui/core/styles/withStyles';
 
 import clsx from 'clsx';
-import { Button, Grid, Box, CircularProgress } from '@material-ui/core';
+import { Grid, Box, CircularProgress } from '@material-ui/core';
 import SwipeableViews from 'react-swipeable-views';
-import { TextField, CustomComboBox, Typography } from 'components';
+import { TextField, CustomComboBox, Typography, Button } from 'components';
 import { AgeCheck } from 'components/TextField/validators';
 import {
     GenderOptions,
     TobaccoOptions
 } from 'containers/QuoteSubmissionForm/options';
 import axios from 'axios';
+
+import ageIcon from 'assets/images/stepper-icons/Age_Regular.svg';
+import genderIcon from 'assets/images/stepper-icons/Gender_Regular.svg';
+import locationIcon from 'assets/images/stepper-icons/Location_Regular.svg';
+import smokingIcon from 'assets/images/stepper-icons/Smoking_Regular.svg';
+// import SettingsIcon from '@material-ui/icons/Settings';
+//import GroupAddIcon from '@material-ui/icons/GroupAdd';
+//import VideoLabelIcon from '@material-ui/icons/VideoLabel';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -60,43 +70,90 @@ const useColorlibStepIconStyles = makeStyles({
     root: {
         backgroundColor: '#ccc',
         zIndex: 1,
-        width: 2,
-        height: 60,
+        color: '#fff',
+        width: 50,
+        height: 50,
         display: 'flex',
+        borderRadius: '50%',
         justifyContent: 'center',
-        alignItems: 'center',
-        marginLeft: '10px'
+        alignItems: 'center'
     },
     active: {
-        height: 60,
-        width: 2,
-        backgroundColor: '#009F83'
+        backgroundImage:
+            'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)',
+        boxShadow: '0 4px 10px 0 rgba(0,0,0,.25)'
     },
     completed: {
-        height: 60,
-        width: 2,
-        backgroundColor: '#AAA'
+        backgroundImage:
+            'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)'
     }
 });
 
 function Icon(props) {
     const classes = useColorlibStepIconStyles();
     const { active, completed } = props;
+    const icons = {
+        1: <img src={locationIcon} height={30} alt="location" />,
+        2: <img src={ageIcon} height={30} alt="age" />,
+        3: <img src={genderIcon} height={30} alt="gender" />,
+        4: <img src={smokingIcon} height={30} alt="smoking" />
+    };
 
     return (
         <div
             className={clsx(classes.root, {
                 [classes.active]: active,
                 [classes.completed]: completed
-            })}></div>
+            })}>
+            {icons[String(props.icon)]}
+        </div>
     );
 }
+
+const ColorlibConnector = withStyles({
+    alternativeLabel: {},
+    active: {
+        '& $line': {
+            backgroundImage:
+                'linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)'
+        }
+    },
+    completed: {
+        '& $line': {
+            backgroundImage:
+                'linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)'
+        }
+    },
+    root: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'flex-end'
+    },
+    line: {
+        height: 20,
+        width: 3,
+        border: 0,
+        backgroundColor: '#eaeaf0',
+        borderRadius: 1,
+        marginRight: '30px',
+        marginTop: '10px'
+    }
+})(StepConnector);
 
 // the URL endpoint to make CSG API Request
 const FB_FUNCTION_URL =
     'https://us-central1-landing-pages-2f0ab.cloudfunctions.net/helloWorld';
 const CSG_URLS = {
     QUOTES: 'https://csgapi.appspot.com/v1/med_supp/quotes.json'
+};
+
+const LabelComponent = ({ normalText = 'What is your ', text }) => {
+    return (
+        <span>
+            {normalText}{' '}
+            <span style={{ fontWeight: 900, color: '#F15924' }}>{text}</span>?
+        </span>
+    );
 };
 
 export default function VerticalLinearStepper({ onUpdate }) {
@@ -208,12 +265,17 @@ export default function VerticalLinearStepper({ onUpdate }) {
                                         Where do you live?
                                     </Typography>
                                 </Box>
-                                <Box display="flex" flexDirection="row">
+                                <Box
+                                    display="flex"
+                                    flexDirection="row"
+                                    alignItems="center">
                                     <TextField
                                         fullWidth
                                         variant="outlined"
                                         placeholder="Zip Code"
-                                        label="Zip Code"
+                                        label={
+                                            <LabelComponent text="ZIP CODE" />
+                                        }
                                         size="small"
                                         value={zipcode}
                                         onChange={(e) =>
@@ -224,9 +286,12 @@ export default function VerticalLinearStepper({ onUpdate }) {
                                     />
                                     <Box px={2}>
                                         <Button
+                                            size="large"
+                                            color="red"
+                                            style={{ width: '150px' }}
                                             onClick={changeStep}
-                                            variant="outlined">
-                                            Continue
+                                            variant="contained">
+                                            Next
                                         </Button>
                                     </Box>
                                 </Box>
@@ -254,7 +319,7 @@ export default function VerticalLinearStepper({ onUpdate }) {
                                         fullWidth
                                         variant="outlined"
                                         placeholder="Age"
-                                        label="Age"
+                                        label={<LabelComponent text="AGE" />}
                                         size="small"
                                         type="number"
                                         value={age}
@@ -266,9 +331,12 @@ export default function VerticalLinearStepper({ onUpdate }) {
                                     />
                                     <Box px={2}>
                                         <Button
+                                            size="large"
+                                            color="red"
+                                            style={{ width: '150px' }}
                                             onClick={changeStep}
-                                            variant="outlined">
-                                            Continue
+                                            variant="contained">
+                                            Next
                                         </Button>
                                     </Box>
                                 </Box>
@@ -299,7 +367,7 @@ export default function VerticalLinearStepper({ onUpdate }) {
                                             option.label || ''
                                         }
                                         size="small"
-                                        label="Gender"
+                                        label={<LabelComponent text="GENDER" />}
                                         placeholder="Female"
                                         value={gender}
                                         onChange={(e, value) => {
@@ -312,9 +380,12 @@ export default function VerticalLinearStepper({ onUpdate }) {
 
                                     <Box px={2}>
                                         <Button
+                                            size="large"
+                                            color="red"
+                                            style={{ width: '150px' }}
                                             onClick={changeStep}
-                                            variant="outlined">
-                                            Continue
+                                            variant="contained">
+                                            Next
                                         </Button>
                                     </Box>
                                 </Box>
@@ -344,7 +415,12 @@ export default function VerticalLinearStepper({ onUpdate }) {
                                             option.label || ''
                                         }
                                         size="small"
-                                        label="Please Choose"
+                                        label={
+                                            <LabelComponent
+                                                normalText="Do you use any form of "
+                                                text="tobacco products"
+                                            />
+                                        }
                                         placeholder="Please Choose"
                                         value={tobacco}
                                         onChange={(e, value) =>
@@ -357,9 +433,11 @@ export default function VerticalLinearStepper({ onUpdate }) {
 
                                     <Box px={2}>
                                         <Button
-                                            onClick={changeStep}
-                                            variant="outlined">
-                                            <Box px={1}>Get Quote</Box>
+                                            size="large"
+                                            color="red"
+                                            style={{ width: '200px' }}
+                                            onClick={changeStep}>
+                                            <Box px={1}>Get My Quote</Box>
                                             {!!loading && (
                                                 <CircularProgress size={20} />
                                             )}
@@ -373,7 +451,7 @@ export default function VerticalLinearStepper({ onUpdate }) {
                 <Grid item xs={12} md={3}>
                     <Stepper
                         activeStep={activeStep}
-                        connector={null}
+                        connector={<ColorlibConnector />}
                         orientation="vertical">
                         {steps.map((label, index) => (
                             <Step key={label}>
@@ -388,9 +466,7 @@ export default function VerticalLinearStepper({ onUpdate }) {
                                         root: classes.stepLabelRoot,
                                         label: classes.stepLabelLabel,
                                         active: classes.stepLabelLabel
-                                    }}>
-                                    {label}
-                                </StepLabel>
+                                    }}></StepLabel>
                             </Step>
                         ))}
                     </Stepper>
