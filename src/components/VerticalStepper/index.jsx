@@ -18,13 +18,10 @@ import {
 } from 'containers/QuoteSubmissionForm/options';
 import axios from 'axios';
 
-import ageIcon from 'assets/images/stepper-icons/Age_Regular.svg';
-import genderIcon from 'assets/images/stepper-icons/Gender_Regular.svg';
-import locationIcon from 'assets/images/stepper-icons/Location_Regular.svg';
-import smokingIcon from 'assets/images/stepper-icons/Smoking_Regular.svg';
 // import SettingsIcon from '@material-ui/icons/Settings';
 //import GroupAddIcon from '@material-ui/icons/GroupAdd';
 //import VideoLabelIcon from '@material-ui/icons/VideoLabel';
+import { base_url } from 'common/constant';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -93,10 +90,34 @@ function Icon(props) {
     const classes = useColorlibStepIconStyles();
     const { active, completed } = props;
     const icons = {
-        1: <img src={locationIcon} height={30} alt="location" />,
-        2: <img src={ageIcon} height={30} alt="age" />,
-        3: <img src={genderIcon} height={30} alt="gender" />,
-        4: <img src={smokingIcon} height={30} alt="smoking" />
+        1: (
+            <img
+                src={`${base_url}/assets/images/stepper-icons/Location_Regular.svg`}
+                height={30}
+                alt="location"
+            />
+        ),
+        2: (
+            <img
+                src={`${base_url}/assets/images/stepper-icons/Age_Regular.svg`}
+                height={30}
+                alt="age"
+            />
+        ),
+        3: (
+            <img
+                src={`${base_url}/assets/images/stepper-icons/Gender_Regular.svg`}
+                height={30}
+                alt="gender"
+            />
+        ),
+        4: (
+            <img
+                src={`${base_url}/assets/images/stepper-icons/Smoking_Regular.svg`}
+                height={30}
+                alt="smoking"
+            />
+        )
     };
 
     return (
