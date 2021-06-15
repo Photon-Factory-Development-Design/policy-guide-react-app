@@ -2,7 +2,10 @@ import React from 'react';
 import { base_url } from 'common/constant/index';
 
 const getCompanyLogoPath = (companyName) =>
-    `${base_url}/assets/company_logos/${companyName.replaceAll(' ', '_')}.jpg`;
+    `${base_url}/assets/images/company_logos/${companyName.replaceAll(
+        ' ',
+        '_'
+    )}.jpg`;
 const CompanyLogo = ({ companyName }) => {
     const [src, setSrc] = React.useState(getCompanyLogoPath(companyName));
 
