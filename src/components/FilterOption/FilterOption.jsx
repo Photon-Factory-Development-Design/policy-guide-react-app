@@ -1,14 +1,9 @@
 import React from 'react';
-import {
-    Accordion,
-    AccordionDetails,
-    AccordionSummary,
-    FormControlLabel,
-    Box,
-    Checkbox
-} from '@material-ui/core';
+import clsx from 'clsx';
+import { Collapse, FormControlLabel, Box, Checkbox } from '@material-ui/core';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { Typography } from 'components';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 // jss
 import styles from './filterOptionStyle';
@@ -22,6 +17,8 @@ const FilterOption = ({
     renderer,
     classes
 }) => {
+    const [opened, setOpened] = React.useState(true);
+
     // on change for filter parm
     const onChange = (value) => {
         if (value === 'ALL' && !filter[value]) {
@@ -42,12 +39,20 @@ const FilterOption = ({
         }
     };
 
+    const caretClassName = clsx(classes.caret, opened && 'active');
+
     return (
-        <Accordion classes={{ root: classes.accordionRoot }}>
-            <AccordionSummary>
-                <Typography variant="h6">{title} </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
+        <Box>
+            <Box
+                onClick={() => setOpened((prev) => !prev)}
+                display="flex"
+                flexDirection="row"
+                className={classes.anchor}
+                alignItems="center">
+                <Typography variant="h6">{title} </Typography>{' '}
+                <ExpandMoreIcon className={caretClassName} />
+            </Box>
+            <Collapse in={opened}>
                 <Box display="flex" flexDirection="column">
                     <FormControlLabel
                         control={
@@ -75,8 +80,8 @@ const FilterOption = ({
                         />
                     ))}
                 </Box>
-            </AccordionDetails>
-        </Accordion>
+            </Collapse>
+        </Box>
     );
 };
 

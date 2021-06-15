@@ -166,7 +166,7 @@ function App() {
                                                 display="flex"
                                                 flexDirection="row"
                                                 justifyContent="flex-end"
-                                                bgcolor="background.secondary">
+                                                bgcolor="background.primary">
                                                 <Button
                                                     variant="text"
                                                     onClick={() =>
