@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.b4f9816f.css",
+    "main.css": "/static/css/main.62136860.css",
     "main.js": "/static/js/main.js",
-    "main.css.map": "/static/css/main.b4f9816f.css.map",
+    "main.css.map": "/static/css/main.62136860.css.map",
     "main.js.map": "/static/js/main.js.map",
     "static/js/1.chunk.js": "/static/js/1.chunk.js",
     "static/js/1.chunk.js.map": "/static/js/1.chunk.js.map",
@@ -10,7 +10,7 @@
     "static/media/base.scss": "/static/media/Helvetica Neue Regular.81376695.woff"
   },
   "entrypoints": [
-    "static/css/main.b4f9816f.css",
+    "static/css/main.62136860.css",
     "static/js/main.js"
   ]
 }
