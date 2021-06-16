@@ -15,7 +15,7 @@ const palette = {
     },
 
     background: {
-        primary: '#ddd',
+        primary: '#F8F8F8',
         secondary: '#fff',
         blue: '#11f',
         darkBlue: '#1A88B1',
