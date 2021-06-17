@@ -65,7 +65,7 @@ const styles = {
 
 const useColorlibStepIconStyles = makeStyles({
     root: {
-        backgroundColor: '#ccc',
+        transparent: '#ccc',
         zIndex: 1,
         color: '#fff',
         width: 50,
@@ -76,13 +76,11 @@ const useColorlibStepIconStyles = makeStyles({
         alignItems: 'center'
     },
     active: {
-        backgroundImage:
-            'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)',
+        background: '#F15924',
         boxShadow: '0 4px 10px 0 rgba(0,0,0,.25)'
     },
     completed: {
-        backgroundImage:
-            'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)'
+        background: '#F15924'
     }
 });
 
@@ -120,13 +118,46 @@ function Icon(props) {
         )
     };
 
+    const activeIcons = {
+        1: (
+            <img
+                src={`${base_url}/assets/images/stepper-icons/Location_Highlight.svg`}
+                height={30}
+                alt="location"
+            />
+        ),
+        2: (
+            <img
+                src={`${base_url}/assets/images/stepper-icons/Age_Highlight.svg`}
+                height={30}
+                alt="age"
+            />
+        ),
+        3: (
+            <img
+                src={`${base_url}/assets/images/stepper-icons/Gender_Highlight.svg`}
+                height={30}
+                alt="gender"
+            />
+        ),
+        4: (
+            <img
+                src={`${base_url}/assets/images/stepper-icons/Smoking_Highlight.svg`}
+                height={30}
+                alt="smoking"
+            />
+        )
+    };
+
     return (
         <div
             className={clsx(classes.root, {
                 [classes.active]: active,
                 [classes.completed]: completed
             })}>
-            {icons[String(props.icon)]}
+            {active || completed
+                ? activeIcons[String(props.icon)]
+                : icons[String(props.icon)]}
         </div>
     );
 }
