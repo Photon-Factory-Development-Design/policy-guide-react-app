@@ -25,7 +25,7 @@ const Theme = createMuiTheme({
         },
         MuiPaper: {
             root: {
-                backgroundColor: 'undef'
+                // backgroundColor: 'undef'
             }
         }
     }

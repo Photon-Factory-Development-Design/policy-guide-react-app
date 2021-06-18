@@ -520,6 +520,7 @@ const VerticalLinearStepper = ({ onUpdate, classes: propsClasses }) => {
                     <Box bgcolor="background.darkBlue">
                         <Stepper
                             activeStep={activeStep}
+                            classes={{ root: propsClasses.stepper }}
                             connector={<ColorlibConnector />}
                             orientation="vertical">
                             {steps.map((label, index) => (
