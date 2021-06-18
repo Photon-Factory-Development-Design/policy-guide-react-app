@@ -30,3 +30,16 @@
 div.quote-item:nth-of-type(1) {
     background-color: #f00 !important;
 }
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.ReactVirtualized__List::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.ReactVirtualized__List {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}

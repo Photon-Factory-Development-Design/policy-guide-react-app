@@ -54,9 +54,9 @@ const AccordionDetails = withStyles((theme) => ({
     }
 }))(MuiAccordionDetails);
 
-const DetailAccordion = ({ children, label }) => {
+const DetailAccordion = ({ children, label, ...props }) => {
     return (
-        <Accordion square>
+        <Accordion square {...props}>
             <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1d-content"

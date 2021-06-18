@@ -9,11 +9,12 @@ import { deepClone } from 'utils/array_utils';
 import { getProxy } from 'containers/SuppResultItem/proxy';
 import VerticalLinearStepper from 'components/VerticalStepper';
 import { PlanFeatures } from 'containers/QuoteSubmissionForm/options';
-import QuoteItem from 'components/QuoteItem/QuoteItem';
+// import QuoteItem from 'components/QuoteItem/QuoteItem';
 import SortSelect from 'components/SortSelect/SortSelect';
 import PrintIcon from '@material-ui/icons/Print';
 import CompareDrawer from 'components/CompareDrawer/CompareDrawer';
 import Compare from 'components/Compare/Compare';
+import QuotesList from 'containers/QuotesList/QuotesList';
 
 const PriceFilters = [
     { min: 0, max: 10.0 },
@@ -136,6 +137,7 @@ function App() {
     };
 
     const onChangeCompareItems = React.useCallback((item, checked) => {
+        console.log('onCangeCompareItems');
         setCompareItems((prev) => {
             if (checked === true) {
                 return [...prev, item];
@@ -144,6 +146,8 @@ function App() {
             }
         });
     }, []);
+
+    console.log('App>compareItems', compareItems);
 
     return (
         <React.Fragment>
@@ -204,44 +208,24 @@ function App() {
                                                 <Grid item xs={12} md={9}>
                                                     <Grid
                                                         container
-                                                        direction="column">
-                                                        <div ref={contentRef}>
-                                                            {items.map(
-                                                                (
-                                                                    item,
-                                                                    index
-                                                                ) => (
-                                                                    <Grid
-                                                                        item
-                                                                        key={item.key}>
-                                                                        <QuoteItem
-                                                                            canCompare={
-                                                                                compareItems.length <
-                                                                                3
-                                                                            }
-                                                                            index={
-                                                                                index
-                                                                            }
-                                                                            onChangeCompareItem={
-                                                                                onChangeCompareItems
-                                                                            }
-                                                                            quote={
-                                                                                item
-                                                                            }
-                                                                            compareSelected={compareItems
-                                                                                .map(
-                                                                                    (
-                                                                                        obj
-                                                                                    ) =>
-                                                                                        obj.key
-                                                                                )
-                                                                                .includes(
-                                                                                    item.key
-                                                                                )}
-                                                                        />
-                                                                    </Grid>
-                                                                )
-                                                            )}
+                                                        direction="column"
+                                                        style={{
+                                                            height: '100%'
+                                                        }}>
+                                                        <div
+                                                            ref={contentRef}
+                                                            style={{
+                                                                height: '100%'
+                                                            }}>
+                                                            <QuotesList
+                                                                items={items}
+                                                                compareItems={
+                                                                    compareItems
+                                                                }
+                                                                onChangeCompareItems={
+                                                                    onChangeCompareItems
+                                                                }
+                                                            />
                                                         </div>
                                                     </Grid>
                                                 </Grid>
@@ -252,7 +236,7 @@ function App() {
                             </Container>
                         </div>
                     </Box>
-                    {items.length > 0 && (
+                    {/* {items.length > 0 && (
                         <div className="print">
                             <Grid container direction="column">
                                 <div ref={contentRef}>
@@ -276,7 +260,7 @@ function App() {
                                 </div>
                             </Grid>
                         </div>
-                    )}
+                    )} */}
                     {!showCompare && (
                         <Box bgcolor="background.darkBlue">
                             <Container>

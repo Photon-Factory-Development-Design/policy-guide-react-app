@@ -18,6 +18,9 @@ import {
 } from 'containers/QuoteSubmissionForm/options';
 import axios from 'axios';
 
+// jss
+import pageStyles from './verticalStepperStyle';
+
 // import SettingsIcon from '@material-ui/icons/Settings';
 //import GroupAddIcon from '@material-ui/icons/GroupAdd';
 //import VideoLabelIcon from '@material-ui/icons/VideoLabel';
@@ -210,7 +213,7 @@ const LabelComponent = ({ normalText = 'What is your ', text }) => {
     );
 };
 
-export default function VerticalLinearStepper({ onUpdate }) {
+const VerticalLinearStepper = ({ onUpdate, classes: propsClasses }) => {
     const [activeStep, setActiveStep] = React.useState(0);
     const [age, setAge] = React.useState(65);
     const [zipcode, setZipcode] = React.useState('98110');
@@ -434,6 +437,9 @@ export default function VerticalLinearStepper({ onUpdate }) {
                                         required
                                         name="gender"
                                         fullWidth
+                                        classes={{
+                                            root: propsClasses.autocomplete
+                                        }}
                                     />
 
                                     <Box px={2}>
@@ -488,6 +494,9 @@ export default function VerticalLinearStepper({ onUpdate }) {
                                         name="tobacco"
                                         required
                                         fullWidth
+                                        classes={{
+                                            root: propsClasses.autocomplete
+                                        }}
                                     />
 
                                     <Box px={2}>
@@ -535,4 +544,6 @@ export default function VerticalLinearStepper({ onUpdate }) {
             </Grid>
         </div>
     );
-}
+};
+
+export default withStyles(pageStyles)(VerticalLinearStepper);

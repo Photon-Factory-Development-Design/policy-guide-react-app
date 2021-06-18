@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDeepCompareEffectNoCheck } from 'use-deep-compare-effect';
 
 // material ui icons
 import Grid from '@material-ui/core/Grid';
@@ -36,7 +37,8 @@ const QuoteItem = ({
     onChangeCompareItem,
     canCompare,
     index,
-    classes
+    classes,
+    onChangeSize
 }) => {
     const [loading, setLoading] = React.useState(false);
 
@@ -44,8 +46,10 @@ const QuoteItem = ({
     const planDetail = PLAN_DETAILS[proxy['PLAN']] || null;
     const annualDeductible = detail_infos[0];
 
-    React.useEffect(() => {
+    useDeepCompareEffectNoCheck(() => {
         setLoading(true);
+
+        onChangeSize();
     }, []);
 
     return (
@@ -149,7 +153,9 @@ const QuoteItem = ({
                         />
 
                         {planDetail && (
-                            <DetailAccordion label="View Detail">
+                            <DetailAccordion
+                                label="View Detail"
+                                onChange={onChangeSize}>
                                 <PlanDetail plan={proxy['PLAN']} />
                             </DetailAccordion>
                         )}
