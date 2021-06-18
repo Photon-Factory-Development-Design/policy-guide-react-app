@@ -21,7 +21,7 @@ import axios from 'axios';
 // import SettingsIcon from '@material-ui/icons/Settings';
 //import GroupAddIcon from '@material-ui/icons/GroupAdd';
 //import VideoLabelIcon from '@material-ui/icons/VideoLabel';
-import { base_url } from 'common/constant';
+// import { base_url } from 'common/constant';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -73,80 +73,91 @@ const useColorlibStepIconStyles = makeStyles({
         display: 'flex',
         borderRadius: '50%',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        fontSize: '30px'
     },
     active: {
         background: '#F15924',
-        boxShadow: '0 4px 10px 0 rgba(0,0,0,.25)'
+        boxShadow: '0 4px 10px 0 rgba(0,0,0,.25)',
+        fontSize: '30px',
+        '&>span:before': {
+            color: '#fff !important'
+        }
     },
     completed: {
-        background: '#F15924'
+        fontSize: '30px'
     }
 });
 
 function Icon(props) {
     const classes = useColorlibStepIconStyles();
     const { active, completed } = props;
-    const icons = {
-        1: (
-            <img
-                src={`${base_url}/assets/images/stepper-icons/Location_Regular.svg`}
-                height={30}
-                alt="location"
-            />
-        ),
-        2: (
-            <img
-                src={`${base_url}/assets/images/stepper-icons/Age_Regular.svg`}
-                height={30}
-                alt="age"
-            />
-        ),
-        3: (
-            <img
-                src={`${base_url}/assets/images/stepper-icons/Gender_Regular.svg`}
-                height={30}
-                alt="gender"
-            />
-        ),
-        4: (
-            <img
-                src={`${base_url}/assets/images/stepper-icons/Smoking_Regular.svg`}
-                height={30}
-                alt="smoking"
-            />
-        )
-    };
+    // const icons = {
+    //     1: (
+    //         <img
+    //             src={`${base_url}/assets/images/stepper-icons/Location_Regular.svg`}
+    //             height={30}
+    //             alt="location"
+    //         />
+    //     ),
+    //     2: (
+    //         <img
+    //             src={`${base_url}/assets/images/stepper-icons/Age_Regular.svg`}
+    //             height={30}
+    //             alt="age"
+    //         />
+    //     ),
+    //     3: (
+    //         <img
+    //             src={`${base_url}/assets/images/stepper-icons/Gender_Regular.svg`}
+    //             height={30}
+    //             alt="gender"
+    //         />
+    //     ),
+    //     4: (
+    //         <img
+    //             src={`${base_url}/assets/images/stepper-icons/Smoking_Regular.svg`}
+    //             height={30}
+    //             alt="smoking"
+    //         />
+    //     )
+    // };
 
-    const activeIcons = {
-        1: (
-            <img
-                src={`${base_url}/assets/images/stepper-icons/Location_Highlight.svg`}
-                height={30}
-                alt="location"
-            />
-        ),
-        2: (
-            <img
-                src={`${base_url}/assets/images/stepper-icons/Age_Highlight.svg`}
-                height={30}
-                alt="age"
-            />
-        ),
-        3: (
-            <img
-                src={`${base_url}/assets/images/stepper-icons/Gender_Highlight.svg`}
-                height={30}
-                alt="gender"
-            />
-        ),
-        4: (
-            <img
-                src={`${base_url}/assets/images/stepper-icons/Smoking_Highlight.svg`}
-                height={30}
-                alt="smoking"
-            />
-        )
+    // const activeIcons = {
+    //     1: (
+    //         <img
+    //             src={`${base_url}/assets/images/stepper-icons/Location_Highlight.svg`}
+    //             height={30}
+    //             alt="location"
+    //         />
+    //     ),
+    //     2: (
+    //         <img
+    //             src={`${base_url}/assets/images/stepper-icons/Age_Highlight.svg`}
+    //             height={30}
+    //             alt="age"
+    //         />
+    //     ),
+    //     3: (
+    //         <img
+    //             src={`${base_url}/assets/images/stepper-icons/Gender_Highlight.svg`}
+    //             height={30}
+    //             alt="gender"
+    //         />
+    //     ),
+    //     4: (
+    //         <img
+    //             src={`${base_url}/assets/images/stepper-icons/Smoking_Highlight.svg`}
+    //             height={30}
+    //             alt="smoking"
+    //         />
+    //     )
+    // };
+    const icons = {
+        1: 'icon-location',
+        2: 'icon-age',
+        3: 'icon-gender',
+        4: 'icon-smoking'
     };
 
     return (
@@ -155,9 +166,7 @@ function Icon(props) {
                 [classes.active]: active,
                 [classes.completed]: completed
             })}>
-            {active || completed
-                ? activeIcons[String(props.icon)]
-                : icons[String(props.icon)]}
+            <span className={icons[props.icon]} />
         </div>
     );
 }
@@ -165,16 +174,10 @@ function Icon(props) {
 const ColorlibConnector = withStyles({
     alternativeLabel: {},
     active: {
-        '& $line': {
-            backgroundImage:
-                'linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)'
-        }
+        '& $line': {}
     },
     completed: {
-        '& $line': {
-            backgroundImage:
-                'linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)'
-        }
+        '& $line': {}
     },
     root: {
         display: 'flex',
@@ -182,13 +185,12 @@ const ColorlibConnector = withStyles({
         justifyContent: 'flex-end'
     },
     line: {
-        height: 20,
-        width: 3,
-        border: 0,
-        backgroundColor: '#eaeaf0',
+        height: 50,
+        border: '1px dashed #bcbcbc',
         borderRadius: 1,
-        marginRight: '30px',
-        marginTop: '10px'
+        marginRight: '32px',
+        marginTop: '5px',
+        marginBottom: '8px'
     }
 })(StepConnector);
 
@@ -262,13 +264,14 @@ export default function VerticalLinearStepper({ onUpdate }) {
     };
 
     const changeStep = () => {
+        console.log(activeStep, age);
         switch (activeStep) {
             case 0: {
                 if (!zipcode) return;
                 break;
             }
             case 1: {
-                if (!age && age < 65) return;
+                if (!age || parseInt(age) < 65) return;
                 break;
             }
             case 2: {
@@ -311,7 +314,8 @@ export default function VerticalLinearStepper({ onUpdate }) {
                                 height="100%"
                                 display="flex"
                                 flexDirection="column"
-                                justifyContent="center">
+                                justifyContent="center"
+                                style={{ backgroundColor: '#D1ECE7' }}>
                                 <Box py={2}>
                                     <Typography variant="h2" align="left">
                                         Where do you live?
@@ -360,7 +364,8 @@ export default function VerticalLinearStepper({ onUpdate }) {
                                 height="100%"
                                 display="flex"
                                 flexDirection="column"
-                                justifyContent="center">
+                                justifyContent="center"
+                                style={{ backgroundColor: '#D1ECE7' }}>
                                 <Box py={2}>
                                     <Typography variant="h2" align="left">
                                         How young are you? ;)
@@ -406,7 +411,8 @@ export default function VerticalLinearStepper({ onUpdate }) {
                                 height="100%"
                                 display="flex"
                                 flexDirection="column"
-                                justifyContent="center">
+                                justifyContent="center"
+                                style={{ backgroundColor: '#D1ECE7' }}>
                                 <Box py={2}>
                                     <Typography variant="h2" align="left">
                                         What's your gender?
@@ -454,7 +460,8 @@ export default function VerticalLinearStepper({ onUpdate }) {
                                 height="100%"
                                 display="flex"
                                 flexDirection="column"
-                                justifyContent="center">
+                                justifyContent="center"
+                                style={{ backgroundColor: '#D1ECE7' }}>
                                 <Box py={2}>
                                     <Typography variant="h2" align="left">
                                         Do you use any form of tobacco products?
@@ -501,27 +508,29 @@ export default function VerticalLinearStepper({ onUpdate }) {
                     </SwipeableViews>
                 </Grid>
                 <Grid item xs={12} md={3}>
-                    <Stepper
-                        activeStep={activeStep}
-                        connector={<ColorlibConnector />}
-                        orientation="vertical">
-                        {steps.map((label, index) => (
-                            <Step key={label}>
-                                <StepLabel
-                                    onClick={() =>
-                                        setActiveStep((prev) =>
-                                            Math.min(prev, index)
-                                        )
-                                    }
-                                    StepIconComponent={Icon}
-                                    classes={{
-                                        root: classes.stepLabelRoot,
-                                        label: classes.stepLabelLabel,
-                                        active: classes.stepLabelLabel
-                                    }}></StepLabel>
-                            </Step>
-                        ))}
-                    </Stepper>
+                    <Box bgcolor="background.darkBlue">
+                        <Stepper
+                            activeStep={activeStep}
+                            connector={<ColorlibConnector />}
+                            orientation="vertical">
+                            {steps.map((label, index) => (
+                                <Step key={label}>
+                                    <StepLabel
+                                        onClick={() =>
+                                            setActiveStep((prev) =>
+                                                Math.min(prev, index)
+                                            )
+                                        }
+                                        StepIconComponent={Icon}
+                                        classes={{
+                                            root: classes.stepLabelRoot,
+                                            label: classes.stepLabelLabel,
+                                            active: classes.stepLabelLabel
+                                        }}></StepLabel>
+                                </Step>
+                            ))}
+                        </Stepper>
+                    </Box>
                 </Grid>
             </Grid>
         </div>

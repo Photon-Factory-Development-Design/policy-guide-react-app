@@ -5,9 +5,10 @@ import {
     CardContent,
     Grid,
     CardActions,
-    Button,
     CircularProgress
 } from '@material-ui/core';
+import withStyles from '@material-ui/core/styles/withStyles';
+import Button from 'components/Button/Button';
 import {
     Typography,
     BackgroundContainer,
@@ -22,6 +23,9 @@ import { checkErrorObjValidated } from 'utils/array_utils';
 import axios from 'axios';
 import { useDeepCompareEffectNoCheck } from 'use-deep-compare-effect';
 
+// jss
+import styles from './quoteSubmissionFormStyle';
+
 // the URL endpoint to make CSG API Request
 const FB_FUNCTION_URL =
     'https://us-central1-landing-pages-2f0ab.cloudfunctions.net/helloWorld';
@@ -29,7 +33,7 @@ const CSG_URLS = {
     QUOTES: 'https://csgapi.appspot.com/v1/med_supp/quotes.json'
 };
 
-const QuotesSubmissionForm = ({ onUpdate, data }) => {
+const QuotesSubmissionForm = ({ onUpdate, data, classes }) => {
     const [zipcode, setZipcode] = React.useState(data.zipcode || '98110');
     const [age, setAge] = React.useState(data.age || 65);
     const [gender, setGender] = React.useState(data.gender || '');
@@ -44,7 +48,7 @@ const QuotesSubmissionForm = ({ onUpdate, data }) => {
         setAge(data.age);
         setGender(data.gender);
         setTobacco(data.tobacco);
-    }, [data])
+    }, [data]);
 
     // submitted handler
     const getQuote = async () => {
@@ -102,8 +106,8 @@ const QuotesSubmissionForm = ({ onUpdate, data }) => {
     console.log(gender);
 
     return (
-        <Card>
-            <BackgroundContainer color="blue">
+        <Card classes={{ root: classes.root }}>
+            <BackgroundContainer color="orange">
                 <Box px={2} py={1}>
                     <Typography variant="h6" color="white">
                         Run a Quote
@@ -192,7 +196,7 @@ const QuotesSubmissionForm = ({ onUpdate, data }) => {
 
             <CardActions>
                 <Box px={2}>
-                    <Button onClick={getQuote} color="secondary">
+                    <Button onClick={getQuote}>
                         <Box
                             display="flex"
                             flexDirection="row"
@@ -207,4 +211,4 @@ const QuotesSubmissionForm = ({ onUpdate, data }) => {
     );
 };
 
-export default QuotesSubmissionForm;
+export default withStyles(styles)(QuotesSubmissionForm);

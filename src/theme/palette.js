@@ -4,7 +4,7 @@ const palette = {
         contrastText: '#FFFFFF'
     },
     secondary: {
-        main: '#11f'
+        main: 'rgb(209, 236, 231)'
     },
 
     text: {
@@ -15,12 +15,14 @@ const palette = {
     },
 
     background: {
-        primary: '#F8F8F8',
+        primary: 'rgb(209, 236, 231)',
         secondary: '#fff',
         blue: '#11f',
-        darkBlue: '#1A88B1',
+        darkBlue: 'rgb(209, 236, 231)',
         lightBlue: '#1FA7DA',
-        gray: '#C2C1CC'
+        gray: 'rgb(209, 236, 231)',
+        orange: '#F15924',
+        white: '#fff'
     }
 };
 

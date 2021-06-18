@@ -135,7 +135,7 @@ function App() {
         sortItems(items, option);
     };
 
-    const onChangeCompareItems = (item, checked) => {
+    const onChangeCompareItems = React.useCallback((item, checked) => {
         setCompareItems((prev) => {
             if (checked === true) {
                 return [...prev, item];
@@ -143,13 +143,13 @@ function App() {
                 return prev.filter((obj) => obj.key !== item.key);
             }
         });
-    };
+    }, []);
 
     return (
         <React.Fragment>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <ThemeProvider theme={theme}>
-                    <Box bgcolor="background.primary">
+                    <Box bgcolor="background.darkBlue">
                         <div hidden={showCompare || items.length === 0}>
                             <Container>
                                 {items.length > 0 && (
@@ -213,7 +213,7 @@ function App() {
                                                                 ) => (
                                                                     <Grid
                                                                         item
-                                                                        key={`result-item-${index}`}>
+                                                                        key={item.key}>
                                                                         <QuoteItem
                                                                             canCompare={
                                                                                 compareItems.length <
@@ -222,13 +222,8 @@ function App() {
                                                                             index={
                                                                                 index
                                                                             }
-                                                                            onChangeCompareItem={(
-                                                                                checked
-                                                                            ) =>
-                                                                                onChangeCompareItems(
-                                                                                    item,
-                                                                                    checked
-                                                                                )
+                                                                            onChangeCompareItem={
+                                                                                onChangeCompareItems
                                                                             }
                                                                             quote={
                                                                                 item
@@ -268,13 +263,8 @@ function App() {
                                                     compareItems.length < 3
                                                 }
                                                 index={index}
-                                                onChangeCompareItem={(
-                                                    checked
-                                                ) =>
-                                                    onChangeCompareItems(
-                                                        item,
-                                                        checked
-                                                    )
+                                                onChangeCompareItem={
+                                                    onChangeCompareItems
                                                 }
                                                 quote={item}
                                                 compareSelected={compareItems
@@ -288,16 +278,18 @@ function App() {
                         </div>
                     )}
                     {!showCompare && (
-                        <Container>
-                            {items.length === 0 && (
-                                <VerticalLinearStepper
-                                    onUpdate={(items, params) => {
-                                        onUpdateItems(items, true);
-                                        setParams(params);
-                                    }}
-                                />
-                            )}
-                        </Container>
+                        <Box bgcolor="background.darkBlue">
+                            <Container>
+                                {items.length === 0 && (
+                                    <VerticalLinearStepper
+                                        onUpdate={(items, params) => {
+                                            onUpdateItems(items, true);
+                                            setParams(params);
+                                        }}
+                                    />
+                                )}
+                            </Container>
+                        </Box>
                     )}
                     {!showCompare && (
                         <CompareDrawer
