@@ -24,7 +24,7 @@ import pageStyles from './verticalStepperStyle';
 // import SettingsIcon from '@material-ui/icons/Settings';
 //import GroupAddIcon from '@material-ui/icons/GroupAdd';
 //import VideoLabelIcon from '@material-ui/icons/VideoLabel';
-// import { base_url } from 'common/constant';
+//import { base_url } from 'common/constant';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -95,32 +95,28 @@ const useColorlibStepIconStyles = makeStyles({
 function Icon(props) {
     const classes = useColorlibStepIconStyles();
     const { active, completed } = props;
-    // const icons = {
+    // const normalIcons = {
     //     1: (
     //         <img
-    //             src={`${base_url}/assets/images/stepper-icons/Location_Regular.svg`}
-    //             height={30}
+    //             src={`${base_url}/assets/images/stepper-icons/Location_Regular.png`}
     //             alt="location"
     //         />
     //     ),
     //     2: (
     //         <img
-    //             src={`${base_url}/assets/images/stepper-icons/Age_Regular.svg`}
-    //             height={30}
+    //             src={`${base_url}/assets/images/stepper-icons/Age_Regular.png`}
     //             alt="age"
     //         />
     //     ),
     //     3: (
     //         <img
-    //             src={`${base_url}/assets/images/stepper-icons/Gender_Regular.svg`}
-    //             height={30}
+    //             src={`${base_url}/assets/images/stepper-icons/Gender_Regular.png`}
     //             alt="gender"
     //         />
     //     ),
     //     4: (
     //         <img
-    //             src={`${base_url}/assets/images/stepper-icons/Smoking_Regular.svg`}
-    //             height={30}
+    //             src={`${base_url}/assets/images/stepper-icons/Smoking_Regular.png`}
     //             alt="smoking"
     //         />
     //     )
@@ -129,38 +125,35 @@ function Icon(props) {
     // const activeIcons = {
     //     1: (
     //         <img
-    //             src={`${base_url}/assets/images/stepper-icons/Location_Highlight.svg`}
-    //             height={30}
+    //             src={`${base_url}/assets/images/stepper-icons/Location_Highlight.png`}
     //             alt="location"
     //         />
     //     ),
     //     2: (
     //         <img
-    //             src={`${base_url}/assets/images/stepper-icons/Age_Highlight.svg`}
-    //             height={30}
+    //             src={`${base_url}/assets/images/stepper-icons/Age_Highlight.png`}
     //             alt="age"
     //         />
     //     ),
     //     3: (
     //         <img
-    //             src={`${base_url}/assets/images/stepper-icons/Gender_Highlight.svg`}
-    //             height={30}
+    //             src={`${base_url}/assets/images/stepper-icons/Gender_Highlight.png`}
     //             alt="gender"
     //         />
     //     ),
     //     4: (
     //         <img
-    //             src={`${base_url}/assets/images/stepper-icons/Smoking_Highlight.svg`}
-    //             height={30}
+    //             src={`${base_url}/assets/images/stepper-icons/Smoking_Highlight.png`}
     //             alt="smoking"
     //         />
     //     )
     // };
+    // const icons = active ? activeIcons : normalIcons;
     const icons = {
-        1: 'icon-location',
-        2: 'icon-age',
-        3: 'icon-gender',
-        4: 'icon-smoking'
+        1: <span className="icon-location" />,
+        2: <span className="icon-age" />,
+        3: <span className="icon-gender" />,
+        4: <span className="icon-smoking" style={{ fontSize: '24px' }} />
     };
 
     return (
@@ -169,7 +162,7 @@ function Icon(props) {
                 [classes.active]: active,
                 [classes.completed]: completed
             })}>
-            <span className={icons[props.icon]} />
+            {icons[props.icon]}
         </div>
     );
 }

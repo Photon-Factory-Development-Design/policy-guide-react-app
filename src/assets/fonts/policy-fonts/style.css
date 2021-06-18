@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?g6k5bm');
-  src:  url('fonts/icomoon.eot?g6k5bm#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?g6k5bm') format('truetype'),
-    url('fonts/icomoon.woff?g6k5bm') format('woff'),
-    url('fonts/icomoon.svg?g6k5bm#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?elt0wk');
+  src:  url('fonts/icomoon.eot?elt0wk#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?elt0wk') format('truetype'),
+    url('fonts/icomoon.woff?elt0wk') format('woff'),
+    url('fonts/icomoon.svg?elt0wk#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,19 +25,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-age:before {
+  content: "\e900";
+}
 .icon-gender:before {
   content: "\e901";
-  color: #bcbcbc;
 }
 .icon-location:before {
   content: "\e902";
-  color: #bcbcbc;
 }
 .icon-smoking:before {
   content: "\e903";
-  color: #bcbcbc;
-}
-.icon-age:before {
-  content: "\e900";
-  color: #bcbcbc;
 }
