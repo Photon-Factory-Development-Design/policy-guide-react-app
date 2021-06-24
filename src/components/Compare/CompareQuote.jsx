@@ -12,13 +12,13 @@ const CompareQuote = ({ quote, ...props }) => {
 
     return (
         <Box py={2} {...props}>
-            <Typography variant="h1" fontSize="15px" fontWeight={500}>
+            <Typography variant="h1" fontSize="15px" fontWeight={400}>
                 <a href="#">
                     {proxy['COMPANY_NAME'] || ''} Plan {proxy['PLAN']}
                 </a>
             </Typography>
             <Box display="flex" flexDirection="column">
-                <Typography variant="h1" fontSize="15px" fontWeight={900}>
+                <Typography variant="h1" fontSize="15px" fontWeight={700}>
                     From {proxy['MONTHLY_RATE']}{' '}
                 </Typography>
                 <Typography variant="h1" fontSize="15px">

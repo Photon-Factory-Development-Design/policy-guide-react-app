@@ -25,7 +25,7 @@ const PlanDetail = ({ plan }) => {
     return (
         <Box width="100%">
             <Box py={2}>
-                <Typography fontSize={30} fontWeight={900}>
+                <Typography fontSize={30} fontWeight={700} color="orange">
                     Coverage Highlights
                 </Typography>
                 {coverageHighLights.map((item, index) => (
@@ -38,7 +38,7 @@ const PlanDetail = ({ plan }) => {
             </Box>
 
             <Box py={2}>
-                <Typography fontSize={30} fontWeight={900}>
+                <Typography fontSize={30} fontWeight={700} color="orange">
                     Hospital Services Coverage
                 </Typography>
                 {hospitalServiceCoverage.map((item, index) => (

@@ -50,7 +50,11 @@ export const quote_infos = [
 
 export const PLAN_DETAILS = {
     A: {
-        features: ['Plan A feature', 'Part B Excess Charges'],
+        features: [
+            'Plan A ',
+            'Part B Excess Charges',
+            'Part B Excess Charges'
+        ],
         annual_deductible: [
             {
                 label: 'Part A',
@@ -95,11 +99,19 @@ export const PLAN_DETAILS = {
         ]
     },
     B: {
-        features: ['Plan B feature', 'Skilled nursing facilities'],
+        features: [
+            'Plan B ',
+            'Skilled nursing facilities',
+            'Part B Excess Charges'
+        ],
         annual_deductible: [
             {
                 label: 'Part A',
-                value: 742
+                value: 0
+            },
+            {
+                label: 'Part B',
+                value: 203
             }
         ],
         doctor_hospital_choice:
@@ -136,15 +148,19 @@ export const PLAN_DETAILS = {
         ]
     },
     C: {
-        features: ['Plan C feature', 'Foreign Travel Emergency'],
+        features: [
+            'Plan C ',
+            'Foreign Travel Emergency',
+            'Part B Excess Charges'
+        ],
         annual_deductible: [
             {
                 label: 'Part A',
-                value: 742
+                value: 0
             },
             {
                 label: 'Part B',
-                value: 900
+                value: 203
             }
         ],
         doctor_hospital_choice:
@@ -181,15 +197,19 @@ export const PLAN_DETAILS = {
         ]
     },
     D: {
-        features: ['Plan D feature', 'Part B Excess Charges'],
+        features: [
+            'Plan D ',
+            'Part B Excess Charges',
+            'Part B Excess Charges'
+        ],
         annual_deductible: [
             {
                 label: 'Part A',
-                value: 742
+                value: 0
             },
             {
                 label: 'Part B',
-                value: 800
+                value: 203
             }
         ],
         doctor_hospital_choice:
@@ -226,15 +246,19 @@ export const PLAN_DETAILS = {
         ]
     },
     F: {
-        features: ['Plan F feature', 'Skilled nursing facilities'],
+        features: [
+            'Plan F ',
+            'Skilled nursing facilities',
+            'Part B Excess Charges'
+        ],
         annual_deductible: [
             {
                 label: 'Part A',
-                value: 742
+                value: 0
             },
             {
                 label: 'Part B',
-                value: 800
+                value: 203
             }
         ],
         doctor_hospital_choice:
@@ -271,15 +295,15 @@ export const PLAN_DETAILS = {
         ]
     },
     HDF: {
-        features: ['Plan HDF feature', 'Foreign Travel Emergency'],
+        features: [
+            'Plan HDF ',
+            'Foreign Travel Emergency',
+            'Part B Excess Charges'
+        ],
         annual_deductible: [
             {
                 label: 'Part A',
-                value: 742
-            },
-            {
-                label: 'Part B',
-                value: 800
+                value: 2370
             }
         ],
         doctor_hospital_choice:
@@ -316,15 +340,15 @@ export const PLAN_DETAILS = {
         ]
     },
     HDG: {
-        features: ['Plan HDG feature', 'Foreign Travel Emergency'],
+        features: [
+            'Plan HDG ',
+            'Foreign Travel Emergency',
+            'Part B Excess Charges'
+        ],
         annual_deductible: [
             {
                 label: 'Part A',
-                value: 742
-            },
-            {
-                label: 'Part B',
-                value: 800
+                value: 2370
             }
         ],
         doctor_hospital_choice:
@@ -361,15 +385,15 @@ export const PLAN_DETAILS = {
         ]
     },
     G: {
-        features: ['Plan G feature', 'Part B Excess Charges'],
+        features: ['Plan G ', 'Part B Excess Charges', 'Plan G feature'],
         annual_deductible: [
             {
                 label: 'Part A',
-                value: 742
+                value: 0
             },
             {
                 label: 'Part B',
-                value: 800
+                value: 203
             }
         ],
         doctor_hospital_choice:
@@ -406,7 +430,11 @@ export const PLAN_DETAILS = {
         ]
     },
     K: {
-        features: ['Plan K feature', 'Foreign Travel Emergency'],
+        features: [
+            'Plan K ',
+            'Foreign Travel Emergency',
+            'Foreign Travel Emergency'
+        ],
         annual_deductible: [
             {
                 label: 'Part A',
@@ -414,7 +442,7 @@ export const PLAN_DETAILS = {
             },
             {
                 label: 'Part B',
-                value: 800
+                value: 203
             }
         ],
         doctor_hospital_choice:
@@ -451,7 +479,7 @@ export const PLAN_DETAILS = {
         ]
     },
     L: {
-        features: ['Plan L feature', 'Skilled nursing facilities'],
+        features: ['Plan L ', 'Skilled nursing facilities'],
         annual_deductible: [
             {
                 label: 'Part A',
@@ -459,7 +487,7 @@ export const PLAN_DETAILS = {
             },
             {
                 label: 'Part B',
-                value: 800
+                value: 203
             }
         ],
         doctor_hospital_choice:
@@ -496,7 +524,7 @@ export const PLAN_DETAILS = {
         ]
     },
     M: {
-        features: ['Plan M feature', 'Part B Excess Charges'],
+        features: ['Plan M ', 'Part B Excess Charges'],
         annual_deductible: [
             {
                 label: 'Part A',
@@ -504,7 +532,7 @@ export const PLAN_DETAILS = {
             },
             {
                 label: 'Part B',
-                value: 800
+                value: 203
             }
         ],
         doctor_hospital_choice:
@@ -541,7 +569,7 @@ export const PLAN_DETAILS = {
         ]
     },
     N: {
-        features: ['Plan N feature', 'Foreign Travel Emergency'],
+        features: ['Plan N ', 'Foreign Travel Emergency'],
         annual_deductible: [
             {
                 label: 'Part A',

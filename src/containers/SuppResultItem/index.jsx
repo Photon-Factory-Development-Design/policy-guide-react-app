@@ -21,13 +21,15 @@ const PlanFeaturesContainer = ({ plan }) => {
             <Grid container direction="row">
                 <Grid item xs={12} md={4}>
                     <Typography>
-                        <Box fontWeight={900}>Plan Features:</Box>
+                        <Box fontWeight={700}>Plan Features:</Box>
                     </Typography>
                 </Grid>
                 <Grid item xs={12} md={8}>
                     {plans &&
                         plans.map((plan, index) => (
-                            <Typography key={index}>{plan}</Typography>
+                            <Box px={1} key={index}>
+                                <Typography>{plan}</Typography>
+                            </Box>
                         ))}
                 </Grid>
             </Grid>

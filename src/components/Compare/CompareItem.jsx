@@ -11,7 +11,7 @@ const CompareItem = ({ label, items }) => {
         <Box py={2}>
             <Grid container direction="row">
                 <Grid item xs={12} md={4}>
-                    <Typography fontWeight={900} fontSize={20}>
+                    <Typography fontWeight={700} fontSize={20}>
                         {label}
                     </Typography>
                 </Grid>

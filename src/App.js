@@ -170,7 +170,8 @@ function App() {
                                                 display="flex"
                                                 flexDirection="row"
                                                 justifyContent="flex-end"
-                                                bgcolor="background.primary">
+                                                bgcolor="background.primary"
+                                                px={2}>
                                                 <Button
                                                     variant="text"
                                                     onClick={() =>
@@ -215,7 +216,8 @@ function App() {
                                                         <div
                                                             ref={contentRef}
                                                             style={{
-                                                                height: '100%'
+                                                                height: '100%',
+                                                                minHeight: '800px'
                                                             }}>
                                                             <QuotesList
                                                                 items={items}

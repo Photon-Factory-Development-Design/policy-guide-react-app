@@ -25,11 +25,33 @@ import withMemo from 'components/HOC/withMemo';
 
 // project utils
 import { getProxy } from 'containers/SuppResultItem/proxy';
-import { detail_infos, PLAN_DETAILS } from 'common/data/plans';
-import PlanDetailItem from 'components/PlanDetail/PlanDetailItem';
+import { PLAN_DETAILS } from 'common/data/plans';
+// import PlanDetailItem from 'components/PlanDetail/PlanDetailItem';
+
+import NumberFormat from 'react-number-format';
 
 // jss
 import styles from './quoteItemStyle';
+
+const AnnualDeductible = ({ items }) => {
+    return (
+        <Grid container direction="row">
+            {(items || []).map(({ value, label }, index) => (
+                <Grid key={index} item xs={12} md={12 / items.length}>
+                    <Typography fontSize={'1.125rem'} fontWeight="700">
+                        <NumberFormat
+                            value={value}
+                            displayType="text"
+                            thousandSeparator={true}
+                            prefix={'$'}
+                        />
+                    </Typography>
+                    <Typography fontSize={'1.125rem'}>{label}</Typography>
+                </Grid>
+            ))}
+        </Grid>
+    );
+};
 
 const QuoteItem = ({
     quote,
@@ -44,7 +66,7 @@ const QuoteItem = ({
 
     const proxy = getProxy(quote);
     const planDetail = PLAN_DETAILS[proxy['PLAN']] || null;
-    const annualDeductible = detail_infos[0];
+    const annualDeductible = planDetail['annual_deductible'];
 
     useDeepCompareEffectNoCheck(() => {
         setLoading(true);
@@ -84,12 +106,14 @@ const QuoteItem = ({
                                     Monthly Premium
                                 </Typography>
                                 <Box py={2}>
-                                    <Button
-                                        variant="contained"
-                                        size="large"
-                                        onClick={() => console.log(quote)}>
-                                        View Price
-                                    </Button>
+                                    <a href="tel:8884144575">
+                                        <Button
+                                            variant="contained"
+                                            size="large"
+                                            onClick={() => console.log(quote)}>
+                                            Call to Apply
+                                        </Button>
+                                    </a>
                                 </Box>
                             </Box>
                         </Grid>
@@ -110,9 +134,8 @@ const QuoteItem = ({
 
                             {planDetail && (
                                 <Box py={1}>
-                                    <PlanDetailItem
-                                        detailInfo={annualDeductible}
-                                        planDetail={planDetail}
+                                    <AnnualDeductible
+                                        items={annualDeductible}
                                     />
                                 </Box>
                             )}

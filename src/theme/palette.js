@@ -1,6 +1,6 @@
 const palette = {
     primary: {
-        main: '#C49C57',
+        main: '#F15924',
         contrastText: '#FFFFFF'
     },
     secondary: {
@@ -11,7 +11,8 @@ const palette = {
         primary: '#444',
         secondary: '#2B2B2B',
         blue: '#5d888f',
-        white: '#fff'
+        white: '#fff',
+        orange: '#F15924'
     },
 
     background: {

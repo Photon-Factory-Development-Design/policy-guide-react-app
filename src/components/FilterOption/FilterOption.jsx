@@ -17,7 +17,7 @@ const FilterOption = ({
     renderer,
     classes
 }) => {
-    const [opened, setOpened] = React.useState(true);
+    const [opened, setOpened] = React.useState(false);
 
     // on change for filter parm
     const onChange = (value) => {

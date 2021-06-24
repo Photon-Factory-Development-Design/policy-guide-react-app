@@ -16,10 +16,17 @@ const Theme = createMuiTheme({
                 borderRadius: '28px',
                 minWidth: 200,
                 '&:hover': {
-                    borderColor: '#F15924'
+                    borderColor: '#F15924',
+                    backgroundColor: '#F15924'
                 },
                 '&:focus': {
                     outline: 0
+                }
+            },
+            contained: {
+                '&:hover': {
+                    borderColor: '#F15924',
+                    backgroundColor: '#F15924'
                 }
             }
         },

@@ -135,7 +135,7 @@ function Icon(props) {
     //             alt="age"
     //         />
     //     ),
-    //     3: (
+    //     3: (y
     //         <img
     //             src={`${base_url}/assets/images/stepper-icons/Gender_Highlight.png`}
     //             alt="gender"
@@ -201,7 +201,7 @@ const LabelComponent = ({ normalText = 'What is your ', text }) => {
     return (
         <span>
             {normalText}{' '}
-            <span style={{ fontWeight: 900, color: '#F15924' }}>{text}</span>?
+            <span style={{ fontWeight: 700, color: '#F15924' }}>{text}</span>?
         </span>
     );
 };

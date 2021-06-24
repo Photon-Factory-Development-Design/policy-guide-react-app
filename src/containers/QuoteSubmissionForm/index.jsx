@@ -110,7 +110,7 @@ const QuotesSubmissionForm = ({ onUpdate, data, classes }) => {
             <BackgroundContainer color="orange">
                 <Box px={2} py={1}>
                     <Typography variant="h6" color="white">
-                        Run a Quote
+                        Edit Quote
                     </Typography>
                 </Box>
             </BackgroundContainer>
@@ -201,7 +201,7 @@ const QuotesSubmissionForm = ({ onUpdate, data, classes }) => {
                             display="flex"
                             flexDirection="row"
                             alignItems="center">
-                            <Box px={1}>Get Quote</Box>{' '}
+                            <Box px={1}>Re-Rerun Quote</Box>{' '}
                             {!!loading && <CircularProgress size={20} />}
                         </Box>
                     </Button>

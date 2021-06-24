@@ -9,7 +9,7 @@ const LabelItem = ({ label, value }) => {
                 {label}
             </Typography>
             <Typography color="blue" variant="body1">
-                <Box fontWeight={900}>{value}</Box>
+                <Box fontWeight={700}>{value}</Box>
             </Typography>
         </Box>
     );
