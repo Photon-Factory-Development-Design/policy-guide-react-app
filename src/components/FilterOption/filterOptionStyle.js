@@ -10,6 +10,9 @@ const styles = () => ({
     },
     anchor: {
         cursor: 'pointer'
+    },
+    formLabel: {
+        fontSize: '14px'
     }
 });
 

@@ -150,10 +150,7 @@ const QuoteItem = ({
                                 variant="h1"
                                 fontSize="15px"
                                 fontWeight={500}>
-                                <a href="#">
-                                    {proxy['COMPANY_FULL_NAME']} - Plan{' '}
-                                    {proxy['PLAN']}
-                                </a>
+                                <a href="#">Plan {proxy['PLAN']}</a>
                             </Typography>
 
                             {planDetail && (

@@ -13,7 +13,7 @@ const CompanyLogo = ({ companyName }) => {
         <img
             src={src}
             alt="logo"
-            style={{ maxHeight: '150px', height: '40px' }}
+            style={{ maxHeight: '150px', height: '100px' }}
             onError={() =>
                 setSrc(
                     'https://static.ehealthmedicareplans.com//ehealthinsurance/CarrierProfile/logos/HumanaMedicare.gif'
