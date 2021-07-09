@@ -36,19 +36,38 @@ import styles from './quoteItemStyle';
 const AnnualDeductible = ({ items }) => {
     return (
         <Grid container direction="row">
-            {(items || []).map(({ value, label }, index) => (
-                <Grid key={index} item xs={12} md={12 / items.length}>
-                    <Typography fontSize={'1.125rem'} fontWeight="700">
-                        <NumberFormat
-                            value={value}
-                            displayType="text"
-                            thousandSeparator={true}
-                            prefix={'$'}
-                        />
-                    </Typography>
-                    <Typography fontSize={'1.125rem'}>{label}</Typography>
+            <Grid item xs={12} md={4}>
+                <Typography fontSize={'1rem'} fontWeight="400">
+                    Annual Deductible:
+                </Typography>
+            </Grid>
+            <Grid item xs={12} md={8}>
+                <Grid container direction="row">
+                    {(items || []).map(({ value, label }, index) => (
+                        <Grid key={index} item xs={12} md={12 / items.length}>
+                            <Box display="flex" flexDirecion="row">
+                                <Typography
+                                    fontSize={'1rem'}
+                                    display={'inline'}
+                                    fontWeight={400}>
+                                    {label}:&nbsp;
+                                </Typography>
+                                <Typography
+                                    fontSize={'1rem'}
+                                    fontWeight="700"
+                                    display={'inline'}>
+                                    <NumberFormat
+                                        value={value}
+                                        displayType="text"
+                                        thousandSeparator={true}
+                                        prefix={'$'}
+                                    />
+                                </Typography>
+                            </Box>
+                        </Grid>
+                    ))}
                 </Grid>
-            ))}
+            </Grid>
         </Grid>
     );
 };
@@ -81,21 +100,25 @@ const QuoteItem = ({
                     bgcolor="background.secondary"
                     p={5}
                     className={index % 3 === 2 ? classes.pageBreak : ''}>
-                    <Grid container direction="row">
+                    <Grid container direction="row" alignItems="center">
                         <Grid item xs={4} md={4}>
                             <Box
                                 display="flex"
                                 flexDirection="column"
                                 alignItems="center">
-                                <Typography
-                                    variant="h1"
-                                    fontSize="24px"
-                                    fontWeight={500}>
-                                    From
-                                </Typography>
+                                <Box py={1}>
+                                    <Typography
+                                        variant="h1"
+                                        fontSize="24px"
+                                        lineHeight="30px"
+                                        fontWeight={500}>
+                                        From
+                                    </Typography>
+                                </Box>
                                 <Typography
                                     variant="h1"
                                     fontSize="28px"
+                                    lineHeight="36px"
                                     fontWeight={700}>
                                     ${proxy['MONTHLY_RATE']}
                                 </Typography>
@@ -105,7 +128,8 @@ const QuoteItem = ({
                                     fontWeight={400}>
                                     Monthly Premium
                                 </Typography>
-                                <Box py={2}>
+
+                                <Box py={2} mt={2}>
                                     <a href="tel:8884144575">
                                         <Button
                                             variant="contained"

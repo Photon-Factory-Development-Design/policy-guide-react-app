@@ -82,13 +82,17 @@ const FilterContainer = ({
     }, [companyFilter, priceFilter, planFilter, featureFilter]);
 
     return (
-        <Box display="flex" flexDirection="column" my={2} bgcolor="background.primary">
+        <Box
+            display="flex"
+            flexDirection="column"
+            my={2}
+            bgcolor="background.primary">
             <FilterOption
                 title="Companies"
                 filter={companyFilter}
                 setFilter={setCompanyFilter}
                 filterItems={companies}
-                renderer={(company) => `${company.label}(${company.count})`}
+                renderer={(company) => `${company.label} (${company.count})`}
                 totalLength={items.length}
             />
 
@@ -97,7 +101,7 @@ const FilterContainer = ({
                 filter={priceFilter}
                 setFilter={setPriceFilter}
                 filterItems={prices}
-                renderer={(price) => `${price.label}(${price.count})`}
+                renderer={(price) => `${price.label} (${price.count})`}
                 totalLength={items.length}
             />
 
@@ -106,7 +110,7 @@ const FilterContainer = ({
                 filter={planFilter}
                 setFilter={setPlanFilter}
                 filterItems={planOptions}
-                renderer={(plan) => `${plan.label}(${plan.count})`}
+                renderer={(plan) => `${plan.label} (${plan.count})`}
                 totalLength={items.length}
             />
 
@@ -115,7 +119,7 @@ const FilterContainer = ({
                 filter={featureFilter}
                 setFilter={setFeatureFilter}
                 filterItems={planFeatures}
-                renderer={(feature) => `${feature.label}(${feature.count})`}
+                renderer={(feature) => `${feature.label} (${feature.count})`}
                 totalLength={items.length}
             />
         </Box>

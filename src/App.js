@@ -147,14 +147,14 @@ function App() {
         });
     }, []);
 
-    console.log('App>compareItems', compareItems);
-
     return (
         <React.Fragment>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <ThemeProvider theme={theme}>
                     <Box bgcolor="background.darkBlue">
-                        <div hidden={showCompare || items.length === 0}>
+                        <div
+                            hidden={showCompare || items.length === 0}
+                            style={{ overflow: 'hidden' }}>
                             <Container>
                                 {items.length > 0 && (
                                     <React.Fragment>
@@ -217,7 +217,8 @@ function App() {
                                                             ref={contentRef}
                                                             style={{
                                                                 height: '100%',
-                                                                minHeight: '800px'
+                                                                minHeight:
+                                                                    '800px'
                                                             }}>
                                                             <QuotesList
                                                                 items={items}

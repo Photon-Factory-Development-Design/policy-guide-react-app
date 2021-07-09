@@ -15,7 +15,7 @@ import QuoteItem from 'components/QuoteItem/QuoteItem';
 import Grid from '@material-ui/core/Grid';
 
 const cache = new CellMeasurerCache({
-    minHeight: 500,
+    minHeight: 400,
     fixedWidth: true
 });
 
@@ -31,15 +31,12 @@ const QuotesList = ({
         const item = items[index];
 
         const onChangeSize = () => {
-            console.log('onChangeSize', _listRef.current);
             cache.clear(index, 0);
 
             setTimeout(() => {
                 _listRef.current && _listRef.current.recomputeRowHeights(index);
             }, 500);
         };
-
-        console.log('QuotesList>', compareItems);
 
         return (
             <CellMeasurer
@@ -70,27 +67,28 @@ const QuotesList = ({
     };
 
     return (
-        <AutoSizer>
-            {({ width, height }) => {
-                console.log(width, height);
-                return (
-                    <List
-                        {...props}
-                        width={width}
-                        height={height}
-                        deferredMeasurementCache={cache}
-                        rowHeight={cache.rowHeight}
-                        ref={(ref) => {
-                            // console.log('ref', ref.recomputeRowHeights);
-                            _listRef.current = ref;
-                        }}
-                        rowRenderer={rowRenderer}
-                        overscanRowCount={0}
-                        rowCount={items.length}
-                    />
-                );
-            }}
-        </AutoSizer>
+        <div style={{ height: '100%' }}>
+            <AutoSizer>
+                {({ width, height }) => {
+                    return (
+                        <List
+                            {...props}
+                            width={width}
+                            height={height}
+                            deferredMeasurementCache={cache}
+                            rowHeight={cache.rowHeight}
+                            ref={(ref) => {
+                                // console.log('ref', ref.recomputeRowHeights);
+                                _listRef.current = ref;
+                            }}
+                            rowRenderer={rowRenderer}
+                            overscanRowCount={0}
+                            rowCount={items.length}
+                        />
+                    );
+                }}
+            </AutoSizer>
+        </div>
     );
 };
 

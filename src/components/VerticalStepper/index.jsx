@@ -260,7 +260,6 @@ const VerticalLinearStepper = ({ onUpdate, classes: propsClasses }) => {
     };
 
     const changeStep = () => {
-        console.log(activeStep, age);
         switch (activeStep) {
             case 0: {
                 if (!zipcode) return;
@@ -500,7 +499,10 @@ const VerticalLinearStepper = ({ onUpdate, classes: propsClasses }) => {
                                             onClick={changeStep}>
                                             <Box px={1}>Get My Quote</Box>
                                             {!!loading && (
-                                                <CircularProgress size={20} />
+                                                <CircularProgress
+                                                    size={20}
+                                                    color="secondary"
+                                                />
                                             )}
                                         </Button>
                                     </Box>

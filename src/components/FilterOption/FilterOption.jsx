@@ -63,7 +63,7 @@ const FilterOption = ({
                                 color="primary"
                             />
                         }
-                        label={`All Carriers(${totalLength})`}
+                        label={`All Carriers (${totalLength})`}
                     />
                     {Object.keys(filterItems).map((key) => (
                         <FormControlLabel
