@@ -9,14 +9,19 @@ const coverageHighLights = [
     detail_infos[2],
     detail_infos[3],
     detail_infos[4],
-    detail_infos[5],
-    detail_infos[6]
+    detail_infos[5]
 ];
 
 const hospitalServiceCoverage = [
+    detail_infos[6],
     detail_infos[7],
     detail_infos[8],
-    detail_infos[9]
+    detail_infos[9],
+    detail_infos[10],
+    detail_infos[11],
+    detail_infos[12],
+    detail_infos[13],
+    detail_infos[14]
 ];
 
 const PlanDetail = ({ plan }) => {

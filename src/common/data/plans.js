@@ -27,7 +27,10 @@ export const detail_infos = [
     { label: 'Outpatient Surgery', field: 'outpatient_surgery' },
     {
         label: 'Inpatient Hospital Coverage',
-        field: 'inpatient_hospital_coverage'
+        field: 'inpatient_hospital_coverage',
+        fn: (value) => {
+            return value.join(';');
+        }
     },
     {
         label: 'Outpatient Rehabilitation Services',
@@ -35,9 +38,14 @@ export const detail_infos = [
     },
     {
         label: 'Skilled Nursing Facilities',
-        field: 'skilled_nursing_facilities'
+        field: 'skilled_nursing_facilities',
+        fn: (value) => value.join(';')
     },
-    { label: 'Home Health Care', field: 'home_health_care' }
+    {
+        label: 'Home Health Care',
+        field: 'home_health_care',
+        fn: (value) => value.join(';')
+    }
 ];
 
 export const quote_infos = [
@@ -113,31 +121,31 @@ export const PLAN_DETAILS = {
         prescription_drug_coverage: 'Not Covered',
         preventive_care: '$0 Copay',
         emergency_room: 'No charge after Part B deductible',
-        // ambulance_services:
-        //     '10% after Part B Deductible until you reach Medicare approved amounts.',
+        ambulance_services:
+            '10% after Part B Deductible until you reach Medicare approved amounts.',
         urgent_care: 'No charge after Part B deductible',
-        // outpatient_lab_x_ray:
-        //     '10% after Part B Deductible until you reach Medicare approved amounts.',
-        // outpatient_surgery:
-        //     '10% after Part B Deductible until you reach Medicare approved amounts.',
+        outpatient_lab_x_ray:
+            '10% after Part B Deductible until you reach Medicare approved amounts.',
+        outpatient_surgery:
+            '10% after Part B Deductible until you reach Medicare approved amounts.',
         inpatient_hospital_coverage: [
             'No charge for Days 1-60;',
             'No charge for Days 61-90;',
             'No charge for Days 91-150 (Lifetime Reserve);',
             'No charge for Additional 365 days after reserve;',
             'All costs beyond the additional 365 days.'
+        ],
+        outpatient_rehabilitation_services:
+            '10% after Part B Deductible until you reach Medicare approved amounts.',
+        skilled_nursing_facilities: [
+            'No charge for days 1-20;',
+            'Up to $92.75 a day for days 21-100;',
+            'all costs for the 101st day and after.'
+        ],
+        home_health_care: [
+            'No Charge for medically necessary skilled care services and medical supplies;',
+            'Durable medical equipment subject to Part B deductible Plus 10%'
         ]
-        // outpatient_rehabilitation_services:
-        //     '10% after Part B Deductible until you reach Medicare approved amounts.',
-        // skilled_nursing_facilities: [
-        //     'No charge for days 1-20;',
-        //     'Up to $92.75 a day for days 21-100;',
-        //     'all costs for the 101st day and after.'
-        // ],
-        // home_health_care: [
-        //     'No Charge for medically necessary skilled care services and medical supplies;',
-        //     'Durable medical equipment subject to Part B deductible Plus 10%'
-        // ]
     },
     C: {
         features: [
@@ -165,8 +173,8 @@ export const PLAN_DETAILS = {
         prescription_drug_coverage: 'Not Covered',
         preventive_care: '$0 Copay',
         emergency_room: 'No Charge',
-        // ambulance_services:
-        //     '10% after Part B Deductible until you reach Medicare approved amounts.',
+        ambulance_services:
+            '10% after Part B Deductible until you reach Medicare approved amounts.',
         urgent_care: 'No Charge',
         outpatient_lab_x_ray:
             '10% after Part B Deductible until you reach Medicare approved amounts.',
@@ -178,18 +186,18 @@ export const PLAN_DETAILS = {
             'No charge for Days 91-150;',
             'No charge for Additional 365 days after reserve;',
             'All costs beyond the additional 365 days.'
+        ],
+        outpatient_rehabilitation_services:
+            '10% after Part B Deductible until you reach Medicare approved amounts.',
+        skilled_nursing_facilities: [
+            'No charge for days 1-20;',
+            'Up to $92.75 a day for days 21-100;',
+            'all costs for the 101st day and after.'
+        ],
+        home_health_care: [
+            'No Charge for medically necessary skilled care services and medical supplies;',
+            'Durable medical equipment subject to Part B deductible Plus 10%'
         ]
-        // outpatient_rehabilitation_services:
-        //     '10% after Part B Deductible until you reach Medicare approved amounts.',
-        // skilled_nursing_facilities: [
-        //     'No charge for days 1-20;',
-        //     'Up to $92.75 a day for days 21-100;',
-        //     'all costs for the 101st day and after.'
-        // ],
-        // home_health_care: [
-        //     'No Charge for medically necessary skilled care services and medical supplies;',
-        //     'Durable medical equipment subject to Part B deductible Plus 10%'
-        // ]
     },
     D: {
         features: ['Plan D ', 'Part B Excess Charges', 'Part B Excess Charges'],
@@ -259,31 +267,31 @@ export const PLAN_DETAILS = {
         prescription_drug_coverage: 'Not Covered',
         preventive_care: '$0 Copay',
         emergency_room: 'No charge',
-        // ambulance_services:
-        //     '10% after Part B Deductible until you reach Medicare approved amounts.',
+        ambulance_services:
+            '10% after Part B Deductible until you reach Medicare approved amounts.',
         urgent_care: 'No charge',
-        // outpatient_lab_x_ray:
-        //     '10% after Part B Deductible until you reach Medicare approved amounts.',
-        // outpatient_surgery:
-        //     '10% after Part B Deductible until you reach Medicare approved amounts.',
+        outpatient_lab_x_ray:
+            '10% after Part B Deductible until you reach Medicare approved amounts.',
+        outpatient_surgery:
+            '10% after Part B Deductible until you reach Medicare approved amounts.',
         inpatient_hospital_coverage: [
             'No charge for Days 1-60;',
             'No charge for Days 61-90;',
             'No charge for Days 91-150 (Lifetime Reserve);',
             'No charge for Additional 365 days after reserve;',
             'All costs beyond the additional 365 days.'
+        ],
+        outpatient_rehabilitation_services:
+            '10% after Part B Deductible until you reach Medicare approved amounts.',
+        skilled_nursing_facilities: [
+            'No charge for days 1-20;',
+            'Up to $92.75 a day for days 21-100;',
+            'all costs for the 101st day and after.'
+        ],
+        home_health_care: [
+            'No Charge for medically necessary skilled care services and medical supplies;',
+            'Durable medical equipment subject to Part B deductible Plus 10%'
         ]
-        // outpatient_rehabilitation_services:
-        //     '10% after Part B Deductible until you reach Medicare approved amounts.',
-        // skilled_nursing_facilities: [
-        //     'No charge for days 1-20;',
-        //     'Up to $92.75 a day for days 21-100;',
-        //     'all costs for the 101st day and after.'
-        // ],
-        // home_health_care: [
-        //     'No Charge for medically necessary skilled care services and medical supplies;',
-        //     'Durable medical equipment subject to Part B deductible Plus 10%'
-        // ]
     },
     HDF: {
         features: [
@@ -304,31 +312,31 @@ export const PLAN_DETAILS = {
         prescription_drug_coverage: 'Not Covered',
         preventive_care: '$0 Copay',
         emergency_room: 'No charge after Plan Deductible',
-        // ambulance_services:
-        //     '10% after Part B Deductible until you reach Medicare approved amounts.',
+        ambulance_services:
+            '10% after Part B Deductible until you reach Medicare approved amounts.',
         urgent_care: 'No charge after Plan Deductible',
-        // outpatient_lab_x_ray:
-        //     '10% after Part B Deductible until you reach Medicare approved amounts.',
-        // outpatient_surgery:
-        //     '10% after Part B Deductible until you reach Medicare approved amounts.',
+        outpatient_lab_x_ray:
+            '10% after Part B Deductible until you reach Medicare approved amounts.',
+        outpatient_surgery:
+            '10% after Part B Deductible until you reach Medicare approved amounts.',
         inpatient_hospital_coverage: [
             'No charge after plan deductible for Days 1-60;',
             'No charge for Days 61-90;',
             'No charge for Days 91-150 (Lifetime Reserve);',
             'No charge for Additional 365 days after reserve;',
             'All costs beyond the additional 365 days'
+        ],
+        outpatient_rehabilitation_services:
+            '10% after Part B Deductible until you reach Medicare approved amounts.',
+        skilled_nursing_facilities: [
+            'No charge for days 1-20;',
+            'Up to $92.75 a day for days 21-100;',
+            'all costs for the 101st day and after.'
+        ],
+        home_health_care: [
+            'No Charge for medically necessary skilled care services and medical supplies;',
+            'Durable medical equipment subject to Part B deductible Plus 10%'
         ]
-        // outpatient_rehabilitation_services:
-        //     '10% after Part B Deductible until you reach Medicare approved amounts.',
-        // skilled_nursing_facilities: [
-        //     'No charge for days 1-20;',
-        //     'Up to $92.75 a day for days 21-100;',
-        //     'all costs for the 101st day and after.'
-        // ],
-        // home_health_care: [
-        //     'No Charge for medically necessary skilled care services and medical supplies;',
-        //     'Durable medical equipment subject to Part B deductible Plus 10%'
-        // ]
     },
     HDG: {
         features: [
@@ -350,8 +358,8 @@ export const PLAN_DETAILS = {
         preventive_care: '$0 Copay',
         emergency_room:
             'No charge after Plan Deductible if Part B Deductible has been met',
-        // ambulance_services:
-        //     '10% after Part B Deductible until you reach Medicare approved amounts.',
+        ambulance_services:
+            '10% after Part B Deductible until you reach Medicare approved amounts.',
         urgent_care:
             'No charge after Plan Deductible if Part B Deductible has been met',
         outpatient_lab_x_ray:
@@ -364,18 +372,18 @@ export const PLAN_DETAILS = {
             'No charge for Days 91-150 (Lifetime Reserve);',
             'No charge for Additional 365 days after reserve;',
             'All costs beyond the additional 365 days'
+        ],
+        outpatient_rehabilitation_services:
+            '10% after Part B Deductible until you reach Medicare approved amounts.',
+        skilled_nursing_facilities: [
+            'No charge for days 1-20;',
+            'Up to $92.75 a day for days 21-100;',
+            'all costs for the 101st day and after.'
+        ],
+        home_health_care: [
+            'No Charge for medically necessary skilled care services and medical supplies;',
+            'Durable medical equipment subject to Part B deductible Plus 10%'
         ]
-        // outpatient_rehabilitation_services:
-        //     '10% after Part B Deductible until you reach Medicare approved amounts.',
-        // skilled_nursing_facilities: [
-        //     'No charge for days 1-20;',
-        //     'Up to $92.75 a day for days 21-100;',
-        //     'all costs for the 101st day and after.'
-        // ],
-        // home_health_care: [
-        //     'No Charge for medically necessary skilled care services and medical supplies;',
-        //     'Durable medical equipment subject to Part B deductible Plus 10%'
-        // ]
     },
     G: {
         features: [
@@ -400,8 +408,8 @@ export const PLAN_DETAILS = {
         prescription_drug_coverage: 'Not Covered',
         preventive_care: '$0 Copay',
         emergency_room: 'No charge after Part B deductible',
-        // ambulance_services:
-        //     '10% after Part B Deductible until you reach Medicare approved amounts.',
+        ambulance_services:
+            '10% after Part B Deductible until you reach Medicare approved amounts.',
         urgent_care: 'No charge after Part B deductible',
         outpatient_lab_x_ray:
             '10% after Part B Deductible until you reach Medicare approved amounts.',
@@ -413,18 +421,18 @@ export const PLAN_DETAILS = {
             'No charge for Days 91-150 (Lifetime Reserve);',
             'No charge for Additional 365 days after reserve;',
             'All costs beyond the additional 365'
+        ],
+        outpatient_rehabilitation_services:
+            '10% after Part B Deductible until you reach Medicare approved amounts.',
+        skilled_nursing_facilities: [
+            'No charge for days 1-20;',
+            'Up to $92.75 a day for days 21-100;',
+            'all costs for the 101st day and after.'
+        ],
+        home_health_care: [
+            'No Charge for medically necessary skilled care services and medical supplies;',
+            'Durable medical equipment subject to Part B deductible Plus 10%'
         ]
-        // outpatient_rehabilitation_services:
-        //     '10% after Part B Deductible until you reach Medicare approved amounts.',
-        // skilled_nursing_facilities: [
-        //     'No charge for days 1-20;',
-        //     'Up to $92.75 a day for days 21-100;',
-        //     'all costs for the 101st day and after.'
-        // ],
-        // home_health_care: [
-        //     'No Charge for medically necessary skilled care services and medical supplies;',
-        //     'Durable medical equipment subject to Part B deductible Plus 10%'
-        // ]
     },
     K: {
         features: [
@@ -453,8 +461,8 @@ export const PLAN_DETAILS = {
         preventive_care: '$0 Copay',
         emergency_room:
             '10% after Part B Deductible until you reach Medicare approved amounts.',
-        // ambulance_services:
-        //     '10% after Part B Deductible until you reach Medicare approved amounts.',
+        ambulance_services:
+            '10% after Part B Deductible until you reach Medicare approved amounts.',
         urgent_care:
             '10% after Part B Deductible until you reach Medicare approved amounts.',
         outpatient_lab_x_ray:
@@ -467,18 +475,18 @@ export const PLAN_DETAILS = {
             'No charge for Days 91-150 (60 Lifetime Reserve days);',
             'No charge for Additional 365 days;',
             'All costs beyond the additional 365 days.'
+        ],
+        outpatient_rehabilitation_services:
+            '10% after Part B Deductible until you reach Medicare approved amounts.',
+        skilled_nursing_facilities: [
+            'No charge for days 1-20;',
+            'Up to $92.75 a day for days 21-100;',
+            'all costs for the 101st day and after.'
+        ],
+        home_health_care: [
+            'No Charge for medically necessary skilled care services and medical supplies;',
+            'Durable medical equipment subject to Part B deductible Plus 10%'
         ]
-        // outpatient_rehabilitation_services:
-        //     '10% after Part B Deductible until you reach Medicare approved amounts.',
-        // skilled_nursing_facilities: [
-        //     'No charge for days 1-20;',
-        //     'Up to $92.75 a day for days 21-100;',
-        //     'all costs for the 101st day and after.'
-        // ],
-        // home_health_care: [
-        //     'No Charge for medically necessary skilled care services and medical supplies;',
-        //     'Durable medical equipment subject to Part B deductible Plus 10%'
-        // ]
     },
     L: {
         features: [
@@ -507,32 +515,32 @@ export const PLAN_DETAILS = {
         preventive_care: '$0 Copay',
         emergency_room:
             '5% after Part B Deductible until you reach Medicare approved amounts',
-        // ambulance_services:
-        //     '10% after Part B Deductible until you reach Medicare approved amounts.',
+        ambulance_services:
+            '10% after Part B Deductible until you reach Medicare approved amounts.',
         urgent_care:
             '5% after Part B Deductible until you reach Medicare approved amounts',
-        // outpatient_lab_x_ray:
-        //     '10% after Part B Deductible until you reach Medicare approved amounts.',
-        // outpatient_surgery:
-        //     '10% after Part B Deductible until you reach Medicare approved amounts.',
+        outpatient_lab_x_ray:
+            '10% after Part B Deductible until you reach Medicare approved amounts.',
+        outpatient_surgery:
+            '10% after Part B Deductible until you reach Medicare approved amounts.',
         inpatient_hospital_coverage: [
             '$371 for Days 1-60;',
             'No charge for Days 61-90;',
             'No charge for Days 91-150 (60 Lifetime Reserve days);',
             'No charge for Additional 365 days;',
             'All costs beyond the additional 365 days'
+        ],
+        outpatient_rehabilitation_services:
+            '10% after Part B Deductible until you reach Medicare approved amounts.',
+        skilled_nursing_facilities: [
+            'No charge for days 1-20;',
+            'Up to $92.75 a day for days 21-100;',
+            'all costs for the 101st day and after.'
+        ],
+        home_health_care: [
+            'No Charge for medically necessary skilled care services and medical supplies;',
+            'Durable medical equipment subject to Part B deductible Plus 10%'
         ]
-        // outpatient_rehabilitation_services:
-        //     '10% after Part B Deductible until you reach Medicare approved amounts.',
-        // skilled_nursing_facilities: [
-        //     'No charge for days 1-20;',
-        //     'Up to $92.75 a day for days 21-100;',
-        //     'all costs for the 101st day and after.'
-        // ],
-        // home_health_care: [
-        //     'No Charge for medically necessary skilled care services and medical supplies;',
-        //     'Durable medical equipment subject to Part B deductible Plus 10%'
-        // ]
     },
     M: {
         features: ['Plan M ', 'Part B Excess Charges'],
@@ -599,30 +607,53 @@ export const PLAN_DETAILS = {
         preventive_care: '$0 Copay',
         emergency_room:
             'After Part B deductible, up to $50 for emergency room visit. Emergency room copay is waived if admitted to hospital and visit is covered as Medicare Part A expense.',
-        // ambulance_services:
-        //     '10% after Part B Deductible until you reach Medicare approved amounts.',
+        ambulance_services:
+            '10% after Part B Deductible until you reach Medicare approved amounts.',
         urgent_care: 'No charge after Part B deductible',
-        // outpatient_lab_x_ray:
-        //     '10% after Part B Deductible until you reach Medicare approved amounts.',
-        // outpatient_surgery:
-        //     '10% after Part B Deductible until you reach Medicare approved amounts.',
+        outpatient_lab_x_ray:
+            '10% after Part B Deductible until you reach Medicare approved amounts.',
+        outpatient_surgery:
+            '10% after Part B Deductible until you reach Medicare approved amounts.',
         inpatient_hospital_coverage: [
             'No charge for Days 1-60;',
             'No charge for Days 61-90;',
             'No charge for Days 91-150 (Lifetime Reserve);',
             'No charge for Additional 365 days after reserve;',
             'All costs beyond the additional 365'
+        ],
+        outpatient_rehabilitation_services:
+            '10% after Part B Deductible until you reach Medicare approved amounts.',
+        skilled_nursing_facilities: [
+            'No charge for days 1-20;',
+            'Up to $92.75 a day for days 21-100;',
+            'all costs for the 101st day and after.'
+        ],
+        home_health_care: [
+            'No Charge for medically necessary skilled care services and medical supplies;',
+            'Durable medical equipment subject to Part B deductible Plus 10%'
         ]
-        // outpatient_rehabilitation_services:
-        //     '10% after Part B Deductible until you reach Medicare approved amounts.',
-        // skilled_nursing_facilities: [
-        //     'No charge for days 1-20;',
-        //     'Up to $92.75 a day for days 21-100;',
-        //     'all costs for the 101st day and after.'
-        // ],
-        // home_health_care: [
-        //     'No Charge for medically necessary skilled care services and medical supplies;',
-        //     'Durable medical equipment subject to Part B deductible Plus 10%'
-        // ]
     }
+};
+
+export const getCSVProps = () => {
+    const headers = [{ label: 'Plan', key: 'plan' }];
+    detail_infos.forEach((info) => {
+        headers.push({ label: info.label, key: info.field });
+    });
+
+    const data = Object.keys(PLAN_DETAILS).map((plan) => {
+        const data = { plan };
+        const planDetail = PLAN_DETAILS[plan];
+
+        detail_infos.forEach((info) => {
+            data[info.field] = info.fn
+                ? info.fn(planDetail[info.field])
+                : planDetail[info.field] + '';
+        });
+
+        return data;
+    });
+
+    console.log({ headers, data });
+    return { headers, data };
 };

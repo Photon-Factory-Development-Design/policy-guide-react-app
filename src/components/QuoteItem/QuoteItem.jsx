@@ -90,7 +90,7 @@ const QuoteItem = ({
     useDeepCompareEffectNoCheck(() => {
         setLoading(true);
 
-        onChangeSize();
+        onChangeSize && onChangeSize();
     }, []);
 
     return (

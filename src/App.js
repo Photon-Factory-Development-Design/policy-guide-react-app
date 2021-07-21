@@ -9,12 +9,14 @@ import { deepClone } from 'utils/array_utils';
 import { getProxy } from 'containers/SuppResultItem/proxy';
 import VerticalLinearStepper from 'components/VerticalStepper';
 import { PlanFeatures } from 'containers/QuoteSubmissionForm/options';
-// import QuoteItem from 'components/QuoteItem/QuoteItem';
+import QuoteItem from 'components/QuoteItem/QuoteItem';
 import SortSelect from 'components/SortSelect/SortSelect';
 import PrintIcon from '@material-ui/icons/Print';
 import CompareDrawer from 'components/CompareDrawer/CompareDrawer';
 import Compare from 'components/Compare/Compare';
-import QuotesList from 'containers/QuotesList/QuotesList';
+// import QuotesList from 'containers/QuotesList/QuotesList';
+import { CSVLink } from 'react-csv';
+import { getCSVProps } from 'common/data/plans';
 
 const PriceFilters = [
     { min: 0, max: 10.0 },
@@ -149,6 +151,7 @@ function App() {
 
     return (
         <React.Fragment>
+            <CSVLink {...getCSVProps()}>Download me</CSVLink>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <ThemeProvider theme={theme}>
                     <Box bgcolor="background.darkBlue">
@@ -220,15 +223,44 @@ function App() {
                                                                 minHeight:
                                                                     '800px'
                                                             }}>
-                                                            <QuotesList
-                                                                items={items}
-                                                                compareItems={
-                                                                    compareItems
-                                                                }
-                                                                onChangeCompareItems={
-                                                                    onChangeCompareItems
-                                                                }
-                                                            />
+                                                            {items.map(
+                                                                (
+                                                                    item,
+                                                                    index
+                                                                ) => (
+                                                                    <Grid
+                                                                        item
+                                                                        key={
+                                                                            item.key
+                                                                        }>
+                                                                        <QuoteItem
+                                                                            canCompare={
+                                                                                compareItems.length <
+                                                                                3
+                                                                            }
+                                                                            index={
+                                                                                index
+                                                                            }
+                                                                            onChangeCompareItem={
+                                                                                onChangeCompareItems
+                                                                            }
+                                                                            quote={
+                                                                                item
+                                                                            }
+                                                                            compareSelected={compareItems
+                                                                                .map(
+                                                                                    (
+                                                                                        obj
+                                                                                    ) =>
+                                                                                        obj.key
+                                                                                )
+                                                                                .includes(
+                                                                                    item.key
+                                                                                )}
+                                                                        />
+                                                                    </Grid>
+                                                                )
+                                                            )}
                                                         </div>
                                                     </Grid>
                                                 </Grid>
