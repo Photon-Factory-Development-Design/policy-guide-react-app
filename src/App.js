@@ -15,8 +15,8 @@ import PrintIcon from '@material-ui/icons/Print';
 import CompareDrawer from 'components/CompareDrawer/CompareDrawer';
 import Compare from 'components/Compare/Compare';
 // import QuotesList from 'containers/QuotesList/QuotesList';
-import { CSVLink } from 'react-csv';
-import { getCSVProps } from 'common/data/plans';
+// import { CSVLink } from 'react-csv';
+// import { getCSVProps } from 'common/data/plans';
 
 const PriceFilters = [
     { min: 0, max: 10.0 },
@@ -151,7 +151,7 @@ function App() {
 
     return (
         <React.Fragment>
-            <CSVLink {...getCSVProps()}>Download me</CSVLink>
+            {/* <CSVLink {...getCSVProps()}>Download me</CSVLink> */}
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <ThemeProvider theme={theme}>
                     <Box bgcolor="background.darkBlue">
